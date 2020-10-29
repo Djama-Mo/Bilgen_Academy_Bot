@@ -22,7 +22,8 @@ def status_kz(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button_teacher = KeyboardButton('Мұғалім')
     button_student = KeyboardButton('Оқушы')
-    markup.add(button_teacher).add(button_student)
+    button_alippe = KeyboardButton('Bilgen Әліппе')
+    markup.add(button_teacher).add(button_student).add(button_alippe)
     bot.send_message(chat_id=id, text='Дәрежеңіз', reply_markup=markup)
 
 
@@ -34,73 +35,116 @@ def status_ru(id):
     bot.send_message(chat_id=id, text='Ваш статус', reply_markup=markup)
 
 
+def alippe(id):
+    markup = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Сатып алу', url='wa.me/77783873039')
+    button_2 = InlineKeyboardButton(text='Видео нұсқаулық', callback_data='Видео нұсқаулық')
+
+    markup.add(button_1).add(button_2)
+
+    bot.send_message(chat_id=id, text=alippe_txt, reply_markup=markup)
+
+
 def info_1(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Tanymger Expert')
     button_2 = KeyboardButton('Bilgen Tech')
     button_3 = KeyboardButton('Oysana')
     button_4 = KeyboardButton('Тоғызқұмалақ')
     button_5 = KeyboardButton('Білікті педагог')
-    markup.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5)
+
+    button_back = KeyboardButton('Кері оралу 🔙')
+
+    markup.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_back)
     bot.send_message(chat_id=id, text=info_1_str, reply_markup=markup)
 
 
 def student_kz(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Курстар')
     button_2 = KeyboardButton('Олимпиадалар')
-    markup.add(button_1).add(button_2)
+
+    button_back = KeyboardButton('Кері оралу 🔙')
+
+    markup.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=id, text='Tаңдаңыз', reply_markup=markup)
 
 
 def info_2(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Bilgen UBT')
     button_2 = KeyboardButton('Bilgen Tech')
-    markup.add(button_1).add(button_2)
+
+    button_back = KeyboardButton('Кері  оралу 🔙')
+
+    markup.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=id, text=info_2_str, reply_markup=markup)
 
 
 def info_3(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Bilgen Baige/Alaman')
     button_2 = KeyboardButton('Bala/Bilik Time')
-    markup.add(button_1).add(button_2)
+
+    button_back = KeyboardButton('Кері  оралу 🔙')
+
+    markup.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=id, text=info_3_str, reply_markup=markup)
 
 
 def info_4(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Tanymger  Expert')
     button_2 = KeyboardButton('Bilgen  Tech')
     button_3 = KeyboardButton('Оуsana')
     button_4 = KeyboardButton('Toғызқұмалақ')
     button_5 = KeyboardButton('Квалифицированный педагог')
-    markup.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5)
+
+    button_back = KeyboardButton('Назад 🔙')
+
+    markup.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_back)
     bot.send_message(chat_id=id, text=info_4_str, reply_markup=markup)
 
 
 def student_ru(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Курсы')
     button_2 = KeyboardButton('Олимпиады')
-    markup.add(button_1).add(button_2)
+
+    button_back = KeyboardButton('Назад 🔙')
+
+    markup.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=id, text='Выберите', reply_markup=markup)
 
 
 def info_5(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Bilgen  UBT')
     button_2 = KeyboardButton('Bilgen  Tech')
-    markup.add(button_1).add(button_2)
+
+    button_back = KeyboardButton('Назaд 🔙')
+
+    markup.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=id, text=info_5_str, reply_markup=markup)
 
 
 def info_6(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
     button_1 = KeyboardButton('Bilgen  Baige/Alaman')
     button_2 = KeyboardButton('Bala/Bilik  Time')
-    markup.add(button_1).add(button_2)
+
+    button_back = KeyboardButton('Назaд 🔙')
+
+    markup.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=id, text=info_6_str, reply_markup=markup)
 
 
@@ -126,6 +170,14 @@ def send_info(id, text, lng, condition):
 def reply_video(callback):
     try:
         bot.send_video(chat_id=callback.message.chat.id, data=open('./Pay_method/KASPI.mp4', 'rb'))
+    except ConnectionError:
+        pass
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Видео нұсқаулық')
+def reply_video(callback):
+    try:
+        bot.send_video(chat_id=callback.message.chat.id, data=open('./alippe/BilGen Alippe.mp4', 'rb'))
     except ConnectionError:
         pass
 
@@ -215,7 +267,8 @@ def reply_condition_tanymger_ru(callback):
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  Tech')
 def reply_condition_bilgen_tech_ru(callback):
     try:
-        bot.send_document(chat_id=callback.message.chat.id, data=open(tech_ru_path, 'rb'))
+        bot.send_message(chat_id=callback.message.chat.id, text='Sorry, this file is not ready to demonstrate it yet')
+        # bot.send_document(chat_id=callback.message.chat.id, data=open(tech_ru_path, 'rb'))
     except ConnectionError:
         pass
 
@@ -223,7 +276,8 @@ def reply_condition_bilgen_tech_ru(callback):
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Оуsana')
 def reply_condition_oysana_ru(callback):
     try:
-        bot.send_document(chat_id=callback.message.chat.id, data=open(oys_ru_path, 'rb'))
+        bot.send_message(chat_id=callback.message.chat.id, text='Sorry, this file is not ready to demonstrate it yet')
+        # bot.send_document(chat_id=callback.message.chat.id, data=open(oys_ru_path, 'rb'))
     except ConnectionError:
         pass
 
@@ -248,7 +302,8 @@ def reply_condition_teacher_ru(callback):
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  UBT')
 def reply_condition_ubt_ru(callback):
     try:
-        bot.send_document(chat_id=callback.message.chat.id, data=open(ubt_ru_path, 'rb'))
+        bot.send_message(chat_id=callback.message.chat.id, text='Sorry, this file is not ready to demonstrate it yet')
+        # bot.send_document(chat_id=callback.message.chat.id, data=open(ubt_ru_path, 'rb'))
     except ConnectionError:
         pass
 
@@ -341,15 +396,17 @@ def buttons_tree(message: Message):
 
 
     ###############################################
-    if message.text == '🇰🇿 Қазақша':
+    if message.text == '🇰🇿 Қазақша' or message.text == 'Кері оралу 🔙':
         status_kz(id=id_)
-    elif message.text == '🇷🇺 Русский':
+    elif message.text == '🇷🇺 Русский' or message.text == 'Назад 🔙':
         status_ru(id=id_)
     ###############################################
     elif message.text == 'Мұғалім':
         info_1(id=id_)
-    elif message.text == 'Оқушы':
+    elif message.text == 'Оқушы' or message.text == 'Кері  оралу 🔙':
         student_kz(id=id_)
+    elif message.text == 'Bilgen Әліппе':
+        alippe(id=id_)
     ###############################################
     elif message.text == 'Курстар':
         info_2(id=id_)
@@ -358,7 +415,7 @@ def buttons_tree(message: Message):
     ###############################################
     elif message.text == 'Преподаватель':
         info_4(id=id_)
-    elif message.text == 'Ученик':
+    elif message.text == 'Ученик' or message.text == 'Назaд 🔙':
         student_ru(id=id_)
     ###############################################
     elif message.text == 'Курсы':
@@ -414,6 +471,14 @@ choose_kz = 'Ережені жүктеу'
 
 choose_ru = 'Скачать положение'
 
+alippe_txt = f'Bilgen Әліппе әлемін бірге саяхаттауға шақырамыз❗️\n' \
+             f'Bilgen Әліппе оқулығы оқылым, жазылым, айтылым және тыңдалым — 4 дағды бойынша жүргізіледі.\n' \
+             f'Танымдық әрі қызықты бұл оқулық өз оқырманын бірден баурап алатыны сөзсіз💯✔️ ' \
+             f'Себебі оқулықтың мобильді нұсқасы бар. ' \
+             f'Ал саяхаттың мазмұнды да әсерлі өтуіне Bilge Bala мен Айкерім көмектеседі. \n\n' \
+             f'Әліппе әлемін бірге тамашалағыңыз келсе, тапсырыс беріңіз.\n\n' \
+             f'Бағасы: 3 500 kzt'
+
 #######################################################################################################################
 tanymger_kz = 'Tanymger Expert – заманауи электронды оқулық жасау бойынша авторлар мен баспа қызметкерлерінің ' \
               'біліктілігін арттыру курсы.'
@@ -433,9 +498,9 @@ tech_kz_path = './condition_kz/teacher/BilGenTech.pdf'
 
 oys_kz_path = './condition_kz/teacher/BilGen Oysana.pdf'
 
-tog_kz_path = ''
+tog_kz_path = './condition_kz/teacher/Тогызкумалак.docx'
 
-techr_kz_path = ''
+techr_kz_path = './condition_kz/teacher/Білікті Педагог.docx'
 
 
 info_1_str = f'{tanymger_kz}\n\n{tech_kz}\n\n{oys_kz}\n\n{tog_kz}\n\n{techr_kz}'
@@ -463,9 +528,9 @@ tech_ru_path = ''
 
 oys_ru_path = ''
 
-tog_ru_path = ''
+tog_ru_path = './condition_ru/teacher/Тогызкумалак.docx'
 
-techr_ru_path = ''
+techr_ru_path = './condition_ru/teacher/Кваливицированный Педагог.docx'
 
 #######################################################################################################################
 
