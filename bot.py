@@ -154,7 +154,7 @@ def send_info(id, text, lng, condition):
     button_1 = InlineKeyboardButton(text='Тіркелу', url='https://bilgen.academy/intranet/custom_signup_new.php')
     button_2 = InlineKeyboardButton(text='Төлем жүйесі', callback_data='Төлем жүйесі')
     button_3 = InlineKeyboardButton(text='Регистрация', url='https://bilgen.academy/intranet/custom_signup_new.php')
-    button_4 = InlineKeyboardButton(text='Способ оплаты', callback_data='Способ оплаты')
+    button_4 = InlineKeyboardButton(text='Способ оплаты', url='https://bilgen.academy/api/gateway/')
 
     button_5 = InlineKeyboardButton(text=text, callback_data=condition)
 
@@ -166,7 +166,7 @@ def send_info(id, text, lng, condition):
         bot.send_message(chat_id=id, text='Выберите...', reply_markup=markup_url)
 
 
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Способ оплаты' or callback.data == 'Төлем жүйесі')
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Төлем жүйесі')
 def reply_video(callback):
     try:
         bot.send_video(chat_id=callback.message.chat.id, data=open('./Pay_method/KASPI.mp4', 'rb'))
