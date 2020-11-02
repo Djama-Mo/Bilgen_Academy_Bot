@@ -10,7 +10,7 @@ def main():
     bot.polling()
 
 
-TOKEN = '1025880897:AAGRpeQHuxmZSpf8DEhLSEjUgC0fgg2fU3U'
+TOKEN = '1444931205:AAFd87IYZON5mVbfxi9-zVGf45mkLYXvPLY'
 
 bot = TeleBot(token=TOKEN)
 
