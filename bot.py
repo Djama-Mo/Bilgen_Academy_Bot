@@ -50,15 +50,38 @@ def info_1(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 
     button_1 = KeyboardButton('Tanymger Expert')
-    button_2 = KeyboardButton('Bilgen Tech')
+    button_2 = KeyboardButton('Tanymger Tech')
     button_3 = KeyboardButton('Oysana')
     button_4 = KeyboardButton('Тоғызқұмалақ')
-    button_5 = KeyboardButton('Білікті педагог')
+
+    button_back = KeyboardButton('Кері оралy 🔙')  # y
+
+    markup.add(button_1).add(button_2).add(button_3).add(button_4).add(button_back)
+    bot.send_message(chat_id=id, text=info_1_str, reply_markup=markup)
+
+
+def info_1_2(id):
+    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
+    button_1 = KeyboardButton('Tanymger Tech')
+    button_2 = KeyboardButton('Білікті педагог')
+
+    button_back = KeyboardButton('Кері оралy 🔙')  # y
+
+    markup.add(button_1).add(button_2).add(button_back)
+    bot.send_message(chat_id=id, text=info_1_2_str, reply_markup=markup)
+
+
+def teacher_kz(id):
+    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
+    button_1 = KeyboardButton('Кyрстар')  # y
+    button_2 = KeyboardButton('Олимпиадалаp')  # p
 
     button_back = KeyboardButton('Кері оралу 🔙')
 
-    markup.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_back)
-    bot.send_message(chat_id=id, text=info_1_str, reply_markup=markup)
+    markup.add(button_1).add(button_2).add(button_back)
+    bot.send_message(chat_id=id, text='Tаңдаңыз', reply_markup=markup)
 
 
 def student_kz(id):
@@ -101,15 +124,25 @@ def info_4(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 
     button_1 = KeyboardButton('Tanymger  Expert')
-    button_2 = KeyboardButton('Bilgen  Tech')
-    button_3 = KeyboardButton('Оуsana')
-    button_4 = KeyboardButton('Toғызқұмалақ')
-    button_5 = KeyboardButton('Квалифицированный педагог')
+    button_2 = KeyboardButton('Tanymger  Tech')
+    button_3 = KeyboardButton('Toғызқұмалақ')
 
-    button_back = KeyboardButton('Назад 🔙')
+    button_back = KeyboardButton('Назaд 🔙')  # a''
 
-    markup.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_back)
+    markup.add(button_1).add(button_2).add(button_3).add(button_back)
     bot.send_message(chat_id=id, text=info_4_str, reply_markup=markup)
+
+
+def info_4_2(id):
+    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
+    button_1 = KeyboardButton('Tanymger  Tech')
+    button_2 = KeyboardButton('Квалифицированный педагог')
+
+    button_back = KeyboardButton('Назaд 🔙')  # a''
+
+    markup.add(button_1).add(button_2).add(button_back)
+    bot.send_message(chat_id=id, text=info_4_2_str, reply_markup=markup)
 
 
 def student_ru(id):
@@ -124,15 +157,26 @@ def student_ru(id):
     bot.send_message(chat_id=id, text='Выберите', reply_markup=markup)
 
 
+def teacher_ru(id):
+    markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
+
+    button_1 = KeyboardButton('Kypсы')  # Kyp
+    button_2 = KeyboardButton('Oлимпиады')  # O
+
+    button_back = KeyboardButton('Назад 🔙')
+
+    markup.add(button_1).add(button_2).add(button_back)
+    bot.send_message(chat_id=id, text='Выберите', reply_markup=markup)
+
+
 def info_5(id):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 
-    button_1 = KeyboardButton('Bilgen  UBT')
-    button_2 = KeyboardButton('Bilgen  Tech')
+    button_1 = KeyboardButton('Bilgen  Tech')
 
-    button_back = KeyboardButton('Назaд 🔙')
+    button_back = KeyboardButton('Haзaд 🔙')  # Ha
 
-    markup.add(button_1).add(button_2).add(button_back)
+    markup.add(button_1).add(button_back)
     bot.send_message(chat_id=id, text=info_5_str, reply_markup=markup)
 
 
@@ -142,7 +186,7 @@ def info_6(id):
     button_1 = KeyboardButton('Bilgen  Baige/Alaman')
     button_2 = KeyboardButton('Bala/Bilik  Time')
 
-    button_back = KeyboardButton('Назaд 🔙')
+    button_back = KeyboardButton('Haзaд 🔙')  # Ha
 
     markup.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=id, text=info_6_str, reply_markup=markup)
@@ -194,7 +238,7 @@ def reply_condition_tanymger_kz(callback):
         pass
 
 ##############################################################################################
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen Tech')
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen Tech' or callback.data == 'Tanymger Tech')
 def reply_condition_bilgen_tech_kz(callback):
     try:
         bot.send_document(chat_id=callback.message.chat.id, data=open(tech_kz_path, 'rb'))
@@ -264,20 +308,11 @@ def reply_condition_tanymger_ru(callback):
         pass
 
 ##############################################################################################
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  Tech')
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  Tech' or callback.data == 'Tanymger  Tech')
 def reply_condition_bilgen_tech_ru(callback):
     try:
         bot.send_message(chat_id=callback.message.chat.id, text='Sorry, this file is not ready to demonstrate it yet')
         # bot.send_document(chat_id=callback.message.chat.id, data=open(tech_ru_path, 'rb'))
-    except ConnectionError:
-        pass
-
-##############################################################################################
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Оуsana')
-def reply_condition_oysana_ru(callback):
-    try:
-        bot.send_message(chat_id=callback.message.chat.id, text='Sorry, this file is not ready to demonstrate it yet')
-        # bot.send_document(chat_id=callback.message.chat.id, data=open(oys_ru_path, 'rb'))
     except ConnectionError:
         pass
 
@@ -299,14 +334,6 @@ def reply_condition_teacher_ru(callback):
 
 ##############################################################################################  RU
 ##############################################################################################  STUDENT
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  UBT')
-def reply_condition_ubt_ru(callback):
-    try:
-        bot.send_message(chat_id=callback.message.chat.id, text='Sorry, this file is not ready to demonstrate it yet')
-        # bot.send_document(chat_id=callback.message.chat.id, data=open(ubt_ru_path, 'rb'))
-    except ConnectionError:
-        pass
-
 ##############################################################################################
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  Baige/Alaman')
 def reply_condition_alaman_ru(callback):
@@ -401,8 +428,8 @@ def buttons_tree(message: Message):
     elif message.text == '🇷🇺 Русский' or message.text == 'Назад 🔙':
         status_ru(id=id_)
     ###############################################
-    elif message.text == 'Мұғалім':
-        info_1(id=id_)
+    elif message.text == 'Мұғалім' or message.text == 'Кері оралy 🔙':
+        teacher_kz(id=id_)
     elif message.text == 'Оқушы' or message.text == 'Кері  оралу 🔙':
         student_kz(id=id_)
     elif message.text == 'Bilgen Әліппе':
@@ -413,9 +440,9 @@ def buttons_tree(message: Message):
     elif message.text == 'Олимпиадалар':
         info_3(id=id_)
     ###############################################
-    elif message.text == 'Преподаватель':
-        info_4(id=id_)
-    elif message.text == 'Ученик' or message.text == 'Назaд 🔙':
+    elif message.text == 'Преподаватель' or message.text == 'Назaд 🔙':
+        teacher_ru(id=id_)
+    elif message.text == 'Ученик' or message.text == 'Haзaд 🔙':
         student_ru(id=id_)
     ###############################################
     elif message.text == 'Курсы':
@@ -425,8 +452,8 @@ def buttons_tree(message: Message):
     ###############################################
     elif message.text == 'Tanymger Expert':
         send_info(id=id_, text=choose_kz, lng='kz', condition='Tanymger Expert')
-    elif message.text == 'Bilgen Tech':
-        send_info(id=id_, text=choose_kz, lng='kz', condition='Bilgen Tech')
+    elif message.text == 'Tanymger Tech':
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Tanymger Tech')
     elif message.text == 'Oysana':
         send_info(id=id_, text=choose_kz, lng='kz', condition='Oysana')
     elif message.text == 'Тоғызқұмалақ':
@@ -436,15 +463,15 @@ def buttons_tree(message: Message):
     ###############################################
     elif message.text == 'Tanymger  Expert':
         send_info(id=id_, text=choose_ru, lng='ru', condition='Tanymger  Expert')
-    elif message.text == 'Bilgen  Tech':
-        send_info(id=id_, text=choose_ru, lng='ru', condition='Bilgen  Tech')
-    elif message.text == 'Оуsana':
-        send_info(id=id_, text=choose_ru, lng='ru', condition='Оуsana')
+    elif message.text == 'Tanymger  Tech':
+        send_info(id=id_, text=choose_ru, lng='ru', condition='Tanymger  Tech')
     elif message.text == 'Toғызқұмалақ':
         send_info(id=id_, text=choose_ru, lng='ru', condition='Toғызқұмалақ')
     elif message.text == 'Квалифицированный педагог':
         send_info(id=id_, text=choose_ru, lng='ru', condition='Квалифицированный педагог')
     ###############################################
+    elif message.text == 'Bilgen Tech':
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Bilgen Tech')
     elif message.text == 'Bilgen UBT':
         send_info(id=id_, text=choose_kz, lng='kz', condition='Bilgen UBT')
     ###############################################
@@ -453,16 +480,23 @@ def buttons_tree(message: Message):
     elif message.text == 'Bala/Bilik Time':
         send_info(id=id_, text=choose_kz, lng='kz', condition='Bala/Bilik Time')
     ###############################################
-    elif message.text == 'Bilgen  UBT':
-        send_info(id=id_, text=choose_ru, lng='ru', condition='Bilgen  UBT')
+    elif message.text == 'Bilgen  Tech':
+        send_info(id=id_, text=choose_ru, lng='ru', condition='Bilgen  Tech')
     ###############################################
     elif message.text == 'Bilgen  Baige/Alaman':
         send_info(id=id_, text=choose_ru, lng='ru', condition='Bilgen  Baige/Alaman')
     elif message.text == 'Bala/Bilik  Time':
         send_info(id=id_, text=choose_ru, lng='ru', condition='Bala/Bilik  Time')
     ###############################################
-    # elif message.data == 'Төлем жүйесі' or message.data == 'Способ оплаты':
-    #     bot.send_video(chat_id=id_, data=open('./Pay_method/KASPI.mp4', 'rb'))
+    elif message.text == 'Kypсы':
+        info_4(id=id_)
+    elif message.text == 'Oлимпиады':
+        info_4_2(id=id_)
+    ###############################################
+    elif message.text == 'Кyрстар':
+        info_1(id=id_)
+    elif message.text == 'Олимпиадалаp':
+        info_1_2(id=id_)
 
 
 say_hello = 'Тілді таңдаңыз\nВыберите язык'
@@ -483,7 +517,7 @@ alippe_txt = f'Bilgen Әліппе әлемін бірге саяхаттауғ�
 tanymger_kz = 'Tanymger Expert – заманауи электронды оқулық жасау бойынша авторлар мен баспа қызметкерлерінің ' \
               'біліктілігін арттыру курсы.'
 
-tech_kz = 'Bilgen Tech – IT саласы бойынша бағдарламалау курсы.'
+tech_teach_kz = 'Tanymger Tech – IT саласы бойынша бағдарламалау курсы.'
 
 oys_kz = 'Oysana – менталды арифметика курсы.'
 
@@ -503,7 +537,9 @@ tog_kz_path = './condition_kz/teacher/Тогызкумалак.docx'
 techr_kz_path = './condition_kz/teacher/Білікті Педагог.docx'
 
 
-info_1_str = f'{tanymger_kz}\n\n{tech_kz}\n\n{oys_kz}\n\n{tog_kz}\n\n{techr_kz}'
+info_1_str = f'{tanymger_kz}\n\n{tech_teach_kz}\n\n{oys_kz}\n\n{tog_kz}'
+
+info_1_2_str = f'{tech_teach_kz}\n\n{techr_kz}'
 #######################################################################################################################
 
 
@@ -511,26 +547,23 @@ info_1_str = f'{tanymger_kz}\n\n{tech_kz}\n\n{oys_kz}\n\n{tog_kz}\n\n{techr_kz}'
 tanymger_ru = 'Tanymger  Expert – курс повышения квалификации для авторов и сотрудников издании ' \
               'по разработке электронного учебника.'
 
-tech_ru = 'Bilgen Tech – курс программирования.'
-
-oys_ru = 'Oysana – курс ментальной арифметики.'
+tech_teach_ru = 'Tanymger Tech – курс программирования.'
 
 tog_ru = 'Тоғызқұмалақ – обучение учителей физкультуры национальной игре «Тогызкумалак».'
 
 techr_ru = 'Квалифицированный педагог – олимпиада для повышения квалификации учителей.'
 
-info_4_str = f'{tanymger_ru}\n\n{tech_ru}\n\n{oys_ru}\n\n{tog_ru}\n\n{techr_ru}'
+info_4_str = f'{tanymger_ru}\n\n{tech_teach_ru}\n\n{tog_ru}'
 
+info_4_2_str = f'{tech_teach_ru}\n\n{techr_ru}'
 
 tanymger_ru_path = 'condition_ru/teacher/Tanymger Expert.docx'
 
 tech_ru_path = ''
 
-oys_ru_path = ''
-
 tog_ru_path = './condition_ru/teacher/Тогызкумалак.docx'
 
-techr_ru_path = './condition_ru/teacher/Кваливицированный Педагог.docx'
+techr_ru_path = 'condition_ru/teacher/Квалифицированный Педагог.docx'
 
 #######################################################################################################################
 
@@ -543,6 +576,7 @@ baige_kz = '«Bilgen Baige» бастауыш сынып оқушыларына,
 
 bilik_kz = 'Bala/Bilik Time – Бастауыш пен жоғарғы сыныптар арасында республикалық көлемде өтетін онлайн олимпиадалар.'
 
+tech_kz = 'Tanymger Tech – IT саласы бойынша бағдарламалау курсы.'
 
 ubt_kz_path = './condition_kz/student/BilGen UBT.pdf'
 
@@ -558,21 +592,18 @@ info_3_str = f'{baige_kz}\n\n{bilik_kz}'
 
 
 #######################################################################################################################
-ubt_ru = 'Bilgen UBT – курс подготовки к ЕНТ для учеников 10-11 классов.'
-
 baige_ru = 'Предметные олимпиады для учеников младших классов «Bilgen Baige» и старшеклассников «Bilgen Alaman».'
 
 bilik_ru = 'Bala/Bilik Time – Республиканские онлайн-олимпиады для учеников 1-11 классов.'
 
-
-ubt_ru_path = ''
+tech_ru = 'Bilgen Tech – курс программирования.'
 
 baige_ru_path = 'condition_ru/student/BilGen  Baige, BilGen Alaman.docx'
 
 bilik_ru_path = './condition_ru/student/BilGen Bala, Bilik TIME.pdf'
 
 
-info_5_str = f'{ubt_ru}\n\n{tech_ru}'
+info_5_str = f'{tech_ru}'
 
 info_6_str = f'{baige_ru}\n\n{bilik_ru}'
 #######################################################################################################################
