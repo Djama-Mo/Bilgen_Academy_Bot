@@ -200,14 +200,112 @@ def send_info(id, text, lng, condition):
     button_3 = InlineKeyboardButton(text='Регистрация', url='https://bilgen.academy/intranet/custom_signup_new.php')
     button_4 = InlineKeyboardButton(text='Способ оплаты', url='https://bilgen.academy/api/gateway/')
 
+    button_chat_kz = InlineKeyboardButton(text=f'{condition} Чатқа өту', callback_data=f'{condition} Чатқа өту')
+    button_chat_ru = InlineKeyboardButton(text=f'Перейти в чат {condition}', callback_data=f'Перейти в чат {condition}')
+
     button_5 = InlineKeyboardButton(text=text, callback_data=condition)
 
     if lng == 'kz':
-        markup_url.add(button_1).add(button_2).add(button_5)
+        markup_url.add(button_1).add(button_2).add(button_chat_kz).add(button_5)
         bot.send_message(chat_id=id, text='Таңдаңыз...', reply_markup=markup_url)
     else:
-        markup_url.add(button_3).add(button_4).add(button_5)
+        markup_url.add(button_3).add(button_4).add(button_chat_ru).add(button_5)
         bot.send_message(chat_id=id, text='Выберите...', reply_markup=markup_url)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'{togyzqumalaq_kz} Чатқа өту')
+def tgz_chat_kz(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Атырау облысы', url='https://t.me/atyrau_9qq')
+    button_2 = InlineKeyboardButton(text='Шығыс Қазақстан облысы',
+                                    url='https://t.me/joinchat/Hgaq8BcHjsy_Doyimn4-LA')
+    button_3 = InlineKeyboardButton(text='Қостанай облысы', url='https://t.me/joinchat/Hgaq8BddeqgB4rTUxXeMqQ')
+    button_4 = InlineKeyboardButton(text='Маңғыстау облысы', url='https://t.me/joinchat/Hgaq8BiIOvjvPZtfTmaIFA')
+    button_5 = InlineKeyboardButton(text='Қызылорда облысы', url='https://t.me/joinchat/Hgaq8BkcHlc7duFH9Fxykg')
+    button_6 = InlineKeyboardButton(text='Жамбыл облысы', url='https://t.me/joinchat/Hgaq8Bko-L8-cFQm01Fy4A')
+    button_7 = InlineKeyboardButton(text='Қарағанды облысы', url='https://t.me/joinchat/Hgaq8Bmgu-tRVqMtL9bprA')
+    button_8 = InlineKeyboardButton(text='Шымкент облысы', url='https://t.me/joinchat/Hgaq8BnOyF-yzft6cGi_-Q')
+    button_9 = InlineKeyboardButton(text='Батыс Қазақстан облысы', url='https://t.me/joinchat/Hgaq8BrDRa6bFe3UYnLdiw')
+    button_10 = InlineKeyboardButton(text='Ақмола облысы', url='https://t.me/joinchat/Hgaq8By9R9Z6wP9w9Om8Dw')
+    button_11 = InlineKeyboardButton(text='Ақтөбе облысы', url='https://t.me/joinchat/Hgaq8BzAHjOrWyIBAmAh4Q')
+    button_12 = InlineKeyboardButton(text='Павлодар облысы', url='https://t.me/joinchat/Hgaq8BvBsGyRMccmS3Q-Iw')
+    button_13 = InlineKeyboardButton(text='Солтүстік Қазақстан облысы',
+                                     url='https://t.me/joinchat/Hgaq8B2zlfaZwLbtMljm_A')
+    button_14 = InlineKeyboardButton(text='Нұр-Сұлтан', url='https://t.me/joinchat/Hgaq8Bn74OCEEBkLbOPYlg')
+
+    button_15 = InlineKeyboardButton(text='Алматы облысы', callback_data='Алматы облысы 9QQ')
+
+    markup_url.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_6).add(button_7).\
+        add(button_8).add(button_9).add(button_10).add(button_11).add(button_12).add(button_13).add(button_14).\
+        add(button_15)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nТаңдаңыз...\n\n', reply_markup=markup_url)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'Перейти в чат {togyzqumalaq_ru}')
+def tgz_chat_ru(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Атырауская область', url='https://t.me/atyrau_9qq')
+    button_2 = InlineKeyboardButton(text='Восточно-Казахстанская область',
+                                    url='https://t.me/joinchat/Hgaq8BcHjsy_Doyimn4-LA')
+    button_3 = InlineKeyboardButton(text='Костанайская область', url='https://t.me/joinchat/Hgaq8BddeqgB4rTUxXeMqQ')
+    button_4 = InlineKeyboardButton(text='Мангистауская область', url='https://t.me/joinchat/Hgaq8BiIOvjvPZtfTmaIFA')
+    button_5 = InlineKeyboardButton(text='Кызылординская область', url='https://t.me/joinchat/Hgaq8BkcHlc7duFH9Fxykg')
+    button_6 = InlineKeyboardButton(text='Жамбылская область', url='https://t.me/joinchat/Hgaq8Bko-L8-cFQm01Fy4A')
+    button_7 = InlineKeyboardButton(text='Карагандинская область', url='https://t.me/joinchat/Hgaq8Bmgu-tRVqMtL9bprA')
+    button_8 = InlineKeyboardButton(text='Шымкентская область', url='https://t.me/joinchat/Hgaq8BnOyF-yzft6cGi_-Q')
+    button_9 = InlineKeyboardButton(text='Западно-Казахстанская область',
+                                    url='https://t.me/joinchat/Hgaq8BrDRa6bFe3UYnLdiw')
+    button_10 = InlineKeyboardButton(text='Акмолинская область', url='https://t.me/joinchat/Hgaq8By9R9Z6wP9w9Om8Dw')
+    button_11 = InlineKeyboardButton(text='Актюбинская область', url='https://t.me/joinchat/Hgaq8BzAHjOrWyIBAmAh4Q')
+    button_12 = InlineKeyboardButton(text='Павлодарская область', url='https://t.me/joinchat/Hgaq8BvBsGyRMccmS3Q-Iw')
+    button_13 = InlineKeyboardButton(text='Северно-Казахстанская область',
+                                     url='https://t.me/joinchat/Hgaq8B2zlfaZwLbtMljm_A')
+    button_14 = InlineKeyboardButton(text='Нур-Султан', url='https://t.me/joinchat/Hgaq8Bn74OCEEBkLbOPYlg')
+
+    button_15 = InlineKeyboardButton(text='Алматинская область', callback_data='Алматинская область 9QQ')
+
+    markup_url.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_6).add(button_7).\
+        add(button_8).add(button_9).add(button_10).add(button_11).add(button_12).add(button_13).add(button_14).\
+        add(button_15)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nВыберите...\n\n', reply_markup=markup_url)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Алматы облысы 9QQ')
+def tgz_almaty_kz(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Жетісу ауданы', url='https://t.me/joinchat/Hgaq8BfxmkZ0tzfZ7Hx6Hw')
+    button_2 = InlineKeyboardButton(text='Бостандық ауданы', url='https://t.me/joinchat/Hgaq8BgRw9wL03UMareBZQ')
+    button_3 = InlineKeyboardButton(text='Алмалы ауданы', url='https://t.me/joinchat/Hgaq8BkDwijojNOsQa4TWQ')
+    button_4 = InlineKeyboardButton(text='Алатау ауданы', url='https://t.me/joinchat/Hgaq8B09m0FzwpB17GQmfg')
+    button_5 = InlineKeyboardButton(text='Наурызбай ауданы', url='https://t.me/joinchat/Hgaq8BsanCBNBwJwV0aGKA')
+    button_6 = InlineKeyboardButton(text='Медеу ауданы', url='https://t.me/joinchat/Hgaq8BtnQc4WZAt_Nw1m1w')
+    button_7 = InlineKeyboardButton(text='Түрксіб ауданы', url='https://t.me/joinchat/Hgaq8BjlBYjP_hwGAmym9A')
+    button_8 = InlineKeyboardButton(text='Әуезов ауданы', url='https://t.me/joinchat/Hgaq8Flgq25rGtZ0Xdht6w')
+
+    markup_url.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_6).add(button_7). \
+        add(button_8)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nТаңдаңыз...\n\n', reply_markup=markup_url)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Алматинская область 9QQ')
+def tgz_almaty_ru(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Жетысуский район', url='https://t.me/joinchat/Hgaq8BfxmkZ0tzfZ7Hx6Hw')
+    button_2 = InlineKeyboardButton(text='Бостандыкский район', url='https://t.me/joinchat/Hgaq8BgRw9wL03UMareBZQ')
+    button_3 = InlineKeyboardButton(text='Алмалинский район', url='https://t.me/joinchat/Hgaq8BkDwijojNOsQa4TWQ')
+    button_4 = InlineKeyboardButton(text='Алатауский район', url='https://t.me/joinchat/Hgaq8B09m0FzwpB17GQmfg')
+    button_5 = InlineKeyboardButton(text='Наурызбайский район', url='https://t.me/joinchat/Hgaq8BsanCBNBwJwV0aGKA')
+    button_6 = InlineKeyboardButton(text='Медеуский район', url='https://t.me/joinchat/Hgaq8BtnQc4WZAt_Nw1m1w')
+    button_7 = InlineKeyboardButton(text='Турксибский район', url='https://t.me/joinchat/Hgaq8BjlBYjP_hwGAmym9A')
+    button_8 = InlineKeyboardButton(text='Ауезовский район', url='https://t.me/joinchat/Hgaq8Flgq25rGtZ0Xdht6w')
+
+    markup_url.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_6).add(button_7). \
+        add(button_8)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nВыберите...\n\n', reply_markup=markup_url)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Төлем жүйесі')
@@ -219,7 +317,7 @@ def reply_video(callback):
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Видео нұсқаулық')
-def reply_video(callback):
+def reply_alippe(callback):
     try:
         bot.send_video(chat_id=callback.message.chat.id, data=open('./alippe/BilGen Alippe.mp4', 'rb'))
     except ConnectionError:
@@ -497,6 +595,8 @@ def buttons_tree(message: Message):
         info_1(id=id_)
     elif message.text == 'Олимпиадалаp':
         info_1_2(id=id_)
+    else:
+        bot.send_message(chat_id=id_, text=mistake)
 
 
 say_hello = 'Тілді таңдаңыз\nВыберите язык'
@@ -513,6 +613,8 @@ alippe_txt = f'Bilgen Әліппе әлемін бірге саяхаттауғ�
              f'Әліппе әлемін бірге тамашалағыңыз келсе, тапсырыс беріңіз.\n\n' \
              f'Бағасы: 3 500 kzt'
 
+mistake = 'Введен не корректный запрос, нажмите на кнопку из нижеперечисленных\n\n' \
+          'Дұрыс емес сұрау енгізілді, төменде көрсетілгендерден батырмасын басыңыз'
 #######################################################################################################################
 tanymger_kz = 'Tanymger Expert – заманауи электронды оқулық жасау бойынша авторлар мен баспа қызметкерлерінің ' \
               'біліктілігін арттыру курсы.'
@@ -606,6 +708,28 @@ bilik_ru_path = './condition_ru/student/BilGen Bala, Bilik TIME.pdf'
 info_5_str = f'{tech_ru}'
 
 info_6_str = f'{baige_ru}\n\n{bilik_ru}'
+#######################################################################################################################
+
+#######################################################################################################################
+tanymger_expert_kz = 'Tanymger Expert'
+tanymger_tech_kz = 'Tanymger Tech'
+oysana_kz = 'Oysana'
+togyzqumalaq_kz = 'Тоғызқұмалақ'
+pedagog_kz = 'Білікті педагог'
+
+tanymger_expert_ru = 'Tanymger  Expert'
+tanymger_tech_ru = 'Tanymger  Tech'
+togyzqumalaq_ru = 'Toғызқұмалақ'
+pedagog_ru = 'Квалифицированный педагог'
+
+bilgen_tech_kz = 'Bilgen Tech'
+bilgen_ubt_kz = 'Bilgen UBT'
+bilgen_baige_kz = 'Bilgen Baige/Alaman'
+bala_time_kz = 'Bala/Bilik Time'
+
+bilgen_tech_ru = 'Bilgen  Tech'
+bilgen_baige_ru = 'Bilgen  Baige/Alaman'
+bala_time_ru = 'Bala/Bilik  Time'
 #######################################################################################################################
 
 
