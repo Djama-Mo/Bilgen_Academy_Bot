@@ -192,7 +192,7 @@ def info_6(id):
     bot.send_message(chat_id=id, text=info_6_str, reply_markup=markup)
 
 
-def send_info(id, text, lng, condition):
+def send_info(id, text, lng, condition, flag=0):
     markup_url = InlineKeyboardMarkup()
 
     button_1 = InlineKeyboardButton(text='Тіркелу', url='https://bilgen.academy/intranet/custom_signup_new.php')
@@ -206,10 +206,16 @@ def send_info(id, text, lng, condition):
     button_5 = InlineKeyboardButton(text=text, callback_data=condition)
 
     if lng == 'kz':
-        markup_url.add(button_1).add(button_2).add(button_chat_kz).add(button_5)
+        if flag:
+            markup_url.add(button_1).add(button_2).add(button_chat_kz).add(button_5)
+        else:
+            markup_url.add(button_1).add(button_2).add(button_5)
         bot.send_message(chat_id=id, text='Таңдаңыз...', reply_markup=markup_url)
     else:
-        markup_url.add(button_3).add(button_4).add(button_chat_ru).add(button_5)
+        if flag:
+            markup_url.add(button_3).add(button_4).add(button_chat_ru).add(button_5)
+        else:
+            markup_url.add(button_3).add(button_4).add(button_5)
         bot.send_message(chat_id=id, text='Выберите...', reply_markup=markup_url)
 
 
@@ -233,12 +239,13 @@ def tgz_chat_kz(callback):
     button_13 = InlineKeyboardButton(text='Солтүстік Қазақстан облысы',
                                      url='https://t.me/joinchat/Hgaq8B2zlfaZwLbtMljm_A')
     button_14 = InlineKeyboardButton(text='Нұр-Сұлтан', url='https://t.me/joinchat/Hgaq8Bn74OCEEBkLbOPYlg')
+    button_15 = InlineKeyboardButton(text='Алматы облысы', url='https://t.me/almaty_oblysy_9qq')
 
-    button_15 = InlineKeyboardButton(text='Алматы облысы', callback_data='Алматы облысы 9QQ')
+    button_16 = InlineKeyboardButton(text='Алматы қаласы', callback_data='Алматы қаласы 9QQ')
 
     markup_url.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_6).add(button_7).\
         add(button_8).add(button_9).add(button_10).add(button_11).add(button_12).add(button_13).add(button_14).\
-        add(button_15)
+        add(button_15).add(button_16)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nТаңдаңыз...\n\n', reply_markup=markup_url)
 
 
@@ -263,16 +270,17 @@ def tgz_chat_ru(callback):
     button_13 = InlineKeyboardButton(text='Северно-Казахстанская область',
                                      url='https://t.me/joinchat/Hgaq8B2zlfaZwLbtMljm_A')
     button_14 = InlineKeyboardButton(text='Нур-Султан', url='https://t.me/joinchat/Hgaq8Bn74OCEEBkLbOPYlg')
+    button_15 = InlineKeyboardButton(text='Алматинская область', url='https://t.me/almaty_oblysy_9qq')
 
-    button_15 = InlineKeyboardButton(text='Алматинская область', callback_data='Алматинская область 9QQ')
+    button_16 = InlineKeyboardButton(text='Алматы', callback_data='Алматы 9QQ')
 
     markup_url.add(button_1).add(button_2).add(button_3).add(button_4).add(button_5).add(button_6).add(button_7).\
         add(button_8).add(button_9).add(button_10).add(button_11).add(button_12).add(button_13).add(button_14).\
-        add(button_15)
+        add(button_15).add(button_16)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nВыберите...\n\n', reply_markup=markup_url)
 
 
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Алматы облысы 9QQ')
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Алматы қаласы 9QQ')
 def tgz_almaty_kz(callback):
     markup_url = InlineKeyboardMarkup()
 
@@ -290,7 +298,7 @@ def tgz_almaty_kz(callback):
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nТаңдаңыз...\n\n', reply_markup=markup_url)
 
 
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Алматинская область 9QQ')
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Алматы 9QQ')
 def tgz_almaty_ru(callback):
     markup_url = InlineKeyboardMarkup()
 
@@ -549,24 +557,24 @@ def buttons_tree(message: Message):
         info_6(id=id_)
     ###############################################
     elif message.text == 'Tanymger Expert':
-        send_info(id=id_, text=choose_kz, lng='kz', condition='Tanymger Expert')
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Tanymger Expert', flag=1)
     elif message.text == 'Tanymger Tech':
-        send_info(id=id_, text=choose_kz, lng='kz', condition='Tanymger Tech')
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Tanymger Tech', flag=1)
     elif message.text == 'Oysana':
-        send_info(id=id_, text=choose_kz, lng='kz', condition='Oysana')
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Oysana', flag=1)
     elif message.text == 'Тоғызқұмалақ':
-        send_info(id=id_, text=choose_kz, lng='kz', condition='Тоғызқұмалақ')
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Тоғызқұмалақ', flag=1)
     elif message.text == 'Білікті педагог':
-        send_info(id=id_, text=choose_kz, lng='kz', condition='Білікті педагог')
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Білікті педагог', flag=1)
     ###############################################
     elif message.text == 'Tanymger  Expert':
-        send_info(id=id_, text=choose_ru, lng='ru', condition='Tanymger  Expert')
+        send_info(id=id_, text=choose_ru, lng='ru', condition='Tanymger  Expert', flag=1)
     elif message.text == 'Tanymger  Tech':
-        send_info(id=id_, text=choose_ru, lng='ru', condition='Tanymger  Tech')
+        send_info(id=id_, text=choose_ru, lng='ru', condition='Tanymger  Tech', flag=1)
     elif message.text == 'Toғызқұмалақ':
-        send_info(id=id_, text=choose_ru, lng='ru', condition='Toғызқұмалақ')
+        send_info(id=id_, text=choose_ru, lng='ru', condition='Toғызқұмалақ', flag=1)
     elif message.text == 'Квалифицированный педагог':
-        send_info(id=id_, text=choose_ru, lng='ru', condition='Квалифицированный педагог')
+        send_info(id=id_, text=choose_ru, lng='ru', condition='Квалифицированный педагог', flag=1)
     ###############################################
     elif message.text == 'Bilgen Tech':
         send_info(id=id_, text=choose_kz, lng='kz', condition='Bilgen Tech')
