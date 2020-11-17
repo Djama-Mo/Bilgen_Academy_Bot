@@ -113,10 +113,11 @@ def info_3(id):
 
     button_1 = KeyboardButton('Bilgen Baige/Alaman')
     button_2 = KeyboardButton('Bala/Bilik Time')
+    button_3 = KeyboardButton('Bilgen Sprint')
 
     button_back = KeyboardButton('Кері  оралу 🔙')
 
-    markup.add(button_1).add(button_2).add(button_back)
+    markup.add(button_1).add(button_2).add(button_3).add(button_back)
     bot.send_message(chat_id=id, text=info_3_str, reply_markup=markup)
 
 
@@ -185,10 +186,11 @@ def info_6(id):
 
     button_1 = KeyboardButton('Bilgen  Baige/Alaman')
     button_2 = KeyboardButton('Bala/Bilik  Time')
+    button_3 = KeyboardButton('Bilgen  Sprint')
 
     button_back = KeyboardButton('Haзaд 🔙')  # Ha
 
-    markup.add(button_1).add(button_2).add(button_back)
+    markup.add(button_1).add(button_2).add(button_3).add(button_back)
     bot.send_message(chat_id=id, text=info_6_str, reply_markup=markup)
 
 
@@ -200,8 +202,13 @@ def send_info(id, text, lng, condition, flag=0):
     button_3 = InlineKeyboardButton(text='Регистрация', url='https://bilgen.academy/intranet/custom_signup_new.php')
     button_4 = InlineKeyboardButton(text='Способ оплаты', url='https://bilgen.academy/api/gateway/')
 
-    button_chat_kz = InlineKeyboardButton(text=f'{condition} Чатқа өту', callback_data=f'{condition} Чатқа өту')
-    button_chat_ru = InlineKeyboardButton(text=f'Перейти в чат {condition}', callback_data=f'Перейти в чат {condition}')
+    if condition != 'Квалифицированный педагог':
+        button_chat_kz = InlineKeyboardButton(text=f'{condition} Чатқа өту', callback_data=f'{condition} Чатқа өту')
+        button_chat_ru = InlineKeyboardButton(text=f'Перейти в чат {condition}', callback_data=
+        f'Перейти в чат {condition}')
+    else:
+        button_chat_kz = InlineKeyboardButton(text=f'Чатқа өту', callback_data=f'Чатқа өту')
+        button_chat_ru = InlineKeyboardButton(text=f'Перейти в чат', callback_data='Перейти в чат')
 
     button_5 = InlineKeyboardButton(text=text, callback_data=condition)
 
@@ -316,6 +323,26 @@ def tgz_almaty_ru(callback):
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nВыберите...\n\n', reply_markup=markup_url)
 
 
+@bot.callback_query_handler(func=lambda callback: callback.data == f'{tanymger_tech_kz} Чатқа өту')
+def tanymger_tech_chat_kz(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Tanymger Tech', url='https://t.me/joinchat/IfxKFBQqT4211bJqMtVcKg')
+
+    markup_url.add(button_1)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nТаңдаңыз...\n\n', reply_markup=markup_url)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'Перейти в чат {tanymger_tech_ru}')
+def tanymger_tech_chat_kz(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Tanymger Tech', url='https://t.me/joinchat/IfxKFBQqT4211bJqMtVcKg')
+
+    markup_url.add(button_1)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nВыберите...\n\n', reply_markup=markup_url)
+
+
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Төлем жүйесі')
 def reply_video(callback):
     try:
@@ -400,6 +427,13 @@ def reply_condition_bilik_kz(callback):
     except ConnectionError:
         pass
 ##############################################################################################
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen Sprint')
+def reply_condition_sprint_kz(callback):
+    try:
+        bot.send_document(chat_id=callback.message.chat.id, data=open(bilgen_sprint_path_kz, 'rb'))
+    except ConnectionError:
+        pass
+##############################################################################################
 
 
 ##############################################################################################  RU
@@ -453,6 +487,13 @@ def reply_condition_alaman_ru(callback):
 def reply_condition_bilik_ru(callback):
     try:
         bot.send_document(chat_id=callback.message.chat.id, data=open(bilik_ru_path, 'rb'))
+    except ConnectionError:
+        pass
+##############################################################################################
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  Sprint')
+def reply_condition_sprint_ru(callback):
+    try:
+        bot.send_document(chat_id=callback.message.chat.id, data=open(bilgen_sprint_path_ru, 'rb'))
     except ConnectionError:
         pass
 ##############################################################################################
@@ -585,6 +626,8 @@ def buttons_tree(message: Message):
         send_info(id=id_, text=choose_kz, lng='kz', condition='Bilgen Baige/Alaman')
     elif message.text == 'Bala/Bilik Time':
         send_info(id=id_, text=choose_kz, lng='kz', condition='Bala/Bilik Time')
+    elif message.text == 'Bilgen Sprint':
+        send_info(id=id_, text=choose_kz, lng='kz', condition='Bilgen Sprint')
     ###############################################
     elif message.text == 'Bilgen  Tech':
         send_info(id=id_, text=choose_ru, lng='ru', condition='Bilgen  Tech')
@@ -593,6 +636,8 @@ def buttons_tree(message: Message):
         send_info(id=id_, text=choose_ru, lng='ru', condition='Bilgen  Baige/Alaman')
     elif message.text == 'Bala/Bilik  Time':
         send_info(id=id_, text=choose_ru, lng='ru', condition='Bala/Bilik  Time')
+    elif message.text == 'Bilgen  Sprint':
+        send_info(id=id_, text=choose_ru, lng='ru', condition='Bilgen  Sprint')
     ###############################################
     elif message.text == 'Kypсы':
         info_4(id=id_)
@@ -644,7 +689,7 @@ oys_kz_path = './condition_kz/teacher/BilGen Oysana.pdf'
 
 tog_kz_path = './condition_kz/teacher/Тогызкумалак.docx'
 
-techr_kz_path = './condition_kz/teacher/Білікті Педагог.docx'
+techr_kz_path = './condition_kz/teacher/Білікті педагог.pdf'
 
 
 info_1_str = f'{tanymger_kz}\n\n{tech_teach_kz}\n\n{oys_kz}\n\n{tog_kz}'
@@ -673,7 +718,7 @@ tech_ru_path = ''
 
 tog_ru_path = './condition_ru/teacher/Тогызкумалак.docx'
 
-techr_ru_path = 'condition_ru/teacher/Квалифицированный Педагог.docx'
+techr_ru_path = 'condition_ru/teacher/Квалифицированный педагог.pdf'
 
 #######################################################################################################################
 
@@ -688,16 +733,19 @@ bilik_kz = 'Bala/Bilik Time – Бастауыш пен жоғарғы сыны�
 
 tech_kz = 'Tanymger Tech – IT саласы бойынша бағдарламалау курсы.'
 
+bilgen_sprint_txt_kz = 'Bilgen Sprint - Республикалық қашықтықтан өткізілетін пәндік олимпиада'
+
 ubt_kz_path = './condition_kz/student/BilGen UBT.pdf'
 
 baige_kz_path = './condition_kz/student/BilGen Baige, BilGen Alaman.pdf'
 
-bilik_kz_path = './condition_kz/student/BilGen Bala, Bilik TIME.docx'
+bilik_kz_path = './condition_kz/student/BilGen Bala, Bilik TIME.pdf'
 
+bilgen_sprint_path_kz = './condition_kz/student/BilGen Sprint.pdf'
 
 info_2_str = f'{ubt_kz}\n\n{tech_kz}'
 
-info_3_str = f'{baige_kz}\n\n{bilik_kz}'
+info_3_str = f'{baige_kz}\n\n{bilik_kz}\n\n{bilgen_sprint_txt_kz}'
 #######################################################################################################################
 
 
@@ -708,14 +756,17 @@ bilik_ru = 'Bala/Bilik Time – Республиканские онлайн-ол
 
 tech_ru = 'Bilgen Tech – курс программирования.'
 
-baige_ru_path = 'condition_ru/student/BilGen  Baige, BilGen Alaman.docx'
+bilgen_sprint_txt_ru = 'Bilgen Sprint - Республиканская дистанционная предметная олимпиада'
+
+baige_ru_path = 'condition_ru/student/BilGen Baige, BilGen Alaman.pdf'
 
 bilik_ru_path = './condition_ru/student/BilGen Bala, Bilik TIME.pdf'
 
+bilgen_sprint_path_ru = './condition_ru/student/BilGen Sprint.pdf'
 
 info_5_str = f'{tech_ru}'
 
-info_6_str = f'{baige_ru}\n\n{bilik_ru}'
+info_6_str = f'{baige_ru}\n\n{bilik_ru}\n\n{bilgen_sprint_txt_ru}'
 #######################################################################################################################
 
 #######################################################################################################################
@@ -734,10 +785,12 @@ bilgen_tech_kz = 'Bilgen Tech'
 bilgen_ubt_kz = 'Bilgen UBT'
 bilgen_baige_kz = 'Bilgen Baige/Alaman'
 bala_time_kz = 'Bala/Bilik Time'
+sprint_kz = 'Bilgen Sprint'
 
 bilgen_tech_ru = 'Bilgen  Tech'
 bilgen_baige_ru = 'Bilgen  Baige/Alaman'
 bala_time_ru = 'Bala/Bilik  Time'
+sprint_ru = 'Bilgen  Sprint'
 #######################################################################################################################
 
 
