@@ -7,7 +7,7 @@ from telebot.types import InlineKeyboardButton
 
 
 def main():
-    bot.polling()
+    bot.polling(none_stop=True)
 
 
 TOKEN = '1444931205:AAFd87IYZON5mVbfxi9-zVGf45mkLYXvPLY'
@@ -16,6 +16,8 @@ bot = TeleBot(token=TOKEN)
 
 
 buttons = dict()
+
+users = set()
 
 
 def status_kz(id):
@@ -371,10 +373,18 @@ def reply_condition_tanymger_kz(callback):
         pass
 
 ##############################################################################################
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Tanymger Tech')
+def reply_condition_tan_tech_kz(callback):
+    try:
+        bot.send_document(chat_id=callback.message.chat.id, data=open(tech_kz_path, 'rb'))
+    except ConnectionError:
+        pass
+
+##############################################################################################
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen Tech' or callback.data == 'Tanymger Tech')
 def reply_condition_bilgen_tech_kz(callback):
     try:
-        bot.send_document(chat_id=callback.message.chat.id, data=open(tech_kz_path, 'rb'))
+        bot.send_document(chat_id=callback.message.chat.id, data=open(bilgen_tech_path, 'rb'))
     except ConnectionError:
         pass
 
@@ -448,11 +458,10 @@ def reply_condition_tanymger_ru(callback):
         pass
 
 ##############################################################################################
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Bilgen  Tech' or callback.data == 'Tanymger  Tech')
+@bot.callback_query_handler(func=lambda callback: callback.data == 'Tanymger  Tech')
 def reply_condition_bilgen_tech_ru(callback):
     try:
-        bot.send_message(chat_id=callback.message.chat.id, text='Sorry, this file is not ready to demonstrate it yet')
-        # bot.send_document(chat_id=callback.message.chat.id, data=open(tech_ru_path, 'rb'))
+        bot.send_document(chat_id=callback.message.chat.id, data=open(tech_ru_path, 'rb'))
     except ConnectionError:
         pass
 
@@ -512,6 +521,8 @@ def send_welcome(message: Message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button_kz = KeyboardButton('🇰🇿 Қазақша')
     button_ru = KeyboardButton('🇷🇺 Русский')
+    users.add(message.chat.id)
+    write_file(message.chat.id)
     markup.add(button_kz).add(button_ru)
     bot.send_message(chat_id=message.chat.id, text=say_hello, reply_markup=markup)
 
@@ -648,6 +659,12 @@ def buttons_tree(message: Message):
         info_1(id=id_)
     elif message.text == 'Олимпиадалаp':
         info_1_2(id=id_)
+    elif message.text == 'Выведи количество пользователей':
+        with open('./users.txt', 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                users.add(int(line))
+        bot.send_message(chat_id=id_, text=f'{len(users)}')
     else:
         bot.send_message(chat_id=id_, text=mistake)
 
@@ -683,11 +700,11 @@ techr_kz = 'Білікті педагог – мұғалімдердің біл�
 
 tanymger_kz_path = './condition_kz/teacher/Tanymger Expert.docx'
 
-tech_kz_path = './condition_kz/teacher/BilGenTech.pdf'
+tech_kz_path = 'condition_kz/teacher/Tanymger Tech.pdf'
 
 oys_kz_path = './condition_kz/teacher/BilGen Oysana.pdf'
 
-tog_kz_path = './condition_kz/teacher/Тогызкумалак.docx'
+tog_kz_path = './condition_kz/teacher/Тогызкумалак.pdf'
 
 techr_kz_path = './condition_kz/teacher/Білікті педагог.pdf'
 
@@ -714,9 +731,9 @@ info_4_2_str = f'{tech_teach_ru}\n\n{techr_ru}'
 
 tanymger_ru_path = 'condition_ru/teacher/Tanymger Expert.docx'
 
-tech_ru_path = ''
+tech_ru_path = './condition_ru/teacher/Tanymger Tech.pdf'
 
-tog_ru_path = './condition_ru/teacher/Тогызкумалак.docx'
+tog_ru_path = './condition_ru/teacher/Тогызкумалак.pdf'
 
 techr_ru_path = 'condition_ru/teacher/Квалифицированный педагог.pdf'
 
@@ -742,6 +759,8 @@ baige_kz_path = './condition_kz/student/BilGen Baige, BilGen Alaman.pdf'
 bilik_kz_path = './condition_kz/student/BilGen Bala, Bilik TIME.pdf'
 
 bilgen_sprint_path_kz = './condition_kz/student/BilGen Sprint.pdf'
+
+bilgen_tech_path = './condition_kz/student/BilGenTech.pdf'
 
 info_2_str = f'{ubt_kz}\n\n{tech_kz}'
 
@@ -792,6 +811,10 @@ bilgen_baige_ru = 'Bilgen  Baige/Alaman'
 bala_time_ru = 'Bala/Bilik  Time'
 sprint_ru = 'Bilgen  Sprint'
 #######################################################################################################################
+
+def write_file(text):
+    with open('./users.txt', 'a') as file:
+        file.write(str(text) + '\n')
 
 
 if __name__ == '__main__':
