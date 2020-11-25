@@ -17,7 +17,7 @@ bot = TeleBot(token=TOKEN)
 
 buttons = dict()
 
-users = set()
+# users = set()
 
 
 def status_kz(id):
@@ -521,8 +521,16 @@ def send_welcome(message: Message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button_kz = KeyboardButton('🇰🇿 Қазақша')
     button_ru = KeyboardButton('🇷🇺 Русский')
-    users.add(message.chat.id)
-    write_file(message.chat.id)
+    # users.add(message.chat.id)
+    lines = read_file()
+    flag = 0
+    for num in lines:
+        if message.chat.id == int(num.rstrip()):
+            flag = 1
+    if flag == 0:
+        write_file(message.chat.id)
+        if message.chat.username is not None:
+            write_username(message.chat.username)
     markup.add(button_kz).add(button_ru)
     bot.send_message(chat_id=message.chat.id, text=say_hello, reply_markup=markup)
 
@@ -660,11 +668,15 @@ def buttons_tree(message: Message):
     elif message.text == 'Олимпиадалаp':
         info_1_2(id=id_)
     elif message.text == 'Выведи количество пользователей':
-        with open('./users.txt', 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                users.add(int(line))
-        bot.send_message(chat_id=id_, text=f'{len(users)}')
+        # with open('./users.txt', 'r') as file:
+        #     lines = file.readlines()
+            # for line in lines:
+            #     users.add(int(line))
+        lines = read_file()
+        bot.send_message(chat_id=id_, text=f'{len(lines)}')
+    elif message.text == 'Выведи имена пользователей':
+        lines = read_usernames()
+        bot.send_message(chat_id=id_, text=f'{lines}')
     else:
         bot.send_message(chat_id=id_, text=mistake)
 
@@ -812,9 +824,27 @@ bala_time_ru = 'Bala/Bilik  Time'
 sprint_ru = 'Bilgen  Sprint'
 #######################################################################################################################
 
+
 def write_file(text):
     with open('./users.txt', 'a') as file:
         file.write(str(text) + '\n')
+
+
+def read_file():
+    with open('./users.txt', 'r') as file:
+        lines = file.readlines()
+    return lines
+
+
+def write_username(text):
+    with open('./usernames.txt', 'a') as file:
+        file.write(text + '\n')
+
+
+def read_usernames():
+    with open('./usernames.txt', 'r') as file:
+        lines = file.read()
+    return lines
 
 
 if __name__ == '__main__':
