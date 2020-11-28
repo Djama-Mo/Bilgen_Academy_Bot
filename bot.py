@@ -4,6 +4,7 @@ from telebot.types import Message
 from telebot.types import ReplyKeyboardMarkup
 from telebot.types import InlineKeyboardMarkup
 from telebot.types import InlineKeyboardButton
+from mysql import connector
 
 
 def main():
@@ -17,7 +18,56 @@ bot = TeleBot(token=TOKEN)
 
 buttons = dict()
 
-# users = set()
+
+#mysql://b7aac2f71a4e20:87acfc30@us-cdbr-east-02.cleardb.com/heroku_1f7e85d5a98fc33?reconnect=true
+djama_id = 714484918
+djama_un = 'djama28'
+
+db = connector.connect(host='us-cdbr-east-02.cleardb.com',
+                       user='b7aac2f71a4e20',
+                       password='87acfc30')
+
+cursor = db.cursor()
+
+
+def check_user(uid):
+    choose_users = '''SELECT user_id FROM heroku_1f7e85d5a98fc33.users'''
+    cursor.execute(choose_users)
+    user_ids = cursor.fetchall()
+
+    for t_id in user_ids:
+        if t_id == uid:
+            return 0
+
+    db.commit()
+    return 1
+
+
+def add_user(uid, uname=''):
+    add_user = '''INSERT INTO heroku_1f7e85d5a98fc33.users 
+                  (user_id, username) 
+                  VALUES (%s, %s)'''
+    data_user = (uid, uname)
+
+    cursor.execute(add_user, data_user)
+
+    db.commit()
+
+
+def show_users(flag=0):
+    choose_users = '''SELECT * FROM heroku_1f7e85d5a98fc33.users'''
+    cursor.execute(choose_users)
+    users = cursor.fetchall()
+
+    if flag == 0:
+        db.commit()
+        return len(users)
+    else:
+        list_of_users = ''
+        for user in users:
+            list_of_users += f'{user[0]} - {user[1]}\n'
+        db.commit()
+        return list_of_users
 
 
 def status_kz(id):
@@ -521,16 +571,13 @@ def send_welcome(message: Message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button_kz = KeyboardButton('🇰🇿 Қазақша')
     button_ru = KeyboardButton('🇷🇺 Русский')
-    # users.add(message.chat.id)
-    lines = read_file()
-    flag = 0
-    for num in lines:
-        if message.chat.id == int(num.rstrip()):
-            flag = 1
-    if flag == 0:
-        write_file(message.chat.id)
-        if message.chat.username is not None:
-            write_username(message.chat.username)
+    uid = message.chat.id
+    uname = message.chat.username
+    if check_user(uid=uid) == 1:
+        if uname is not None:
+            add_user(uid=uid, uname=uname)
+        else:
+            add_user(uid=uid)
     markup.add(button_kz).add(button_ru)
     bot.send_message(chat_id=message.chat.id, text=say_hello, reply_markup=markup)
 
@@ -668,15 +715,11 @@ def buttons_tree(message: Message):
     elif message.text == 'Олимпиадалаp':
         info_1_2(id=id_)
     elif message.text == 'Выведи количество пользователей':
-        # with open('./users.txt', 'r') as file:
-        #     lines = file.readlines()
-            # for line in lines:
-            #     users.add(int(line))
-        lines = read_file()
-        bot.send_message(chat_id=id_, text=f'{len(lines)}')
+        count = show_users()
+        bot.send_message(chat_id=id_, text=f'{count}')
     elif message.text == 'Выведи имена пользователей':
-        lines = read_usernames()
-        bot.send_message(chat_id=id_, text=f'{lines}')
+        usernames = show_users(flag=1)
+        bot.send_message(chat_id=id_, text=f'{usernames}')
     else:
         bot.send_message(chat_id=id_, text=mistake)
 
@@ -823,28 +866,6 @@ bilgen_baige_ru = 'Bilgen  Baige/Alaman'
 bala_time_ru = 'Bala/Bilik  Time'
 sprint_ru = 'Bilgen  Sprint'
 #######################################################################################################################
-
-
-def write_file(text):
-    with open('./users.txt', 'a') as file:
-        file.write(str(text) + '\n')
-
-
-def read_file():
-    with open('./users.txt', 'r') as file:
-        lines = file.readlines()
-    return lines
-
-
-def write_username(text):
-    with open('./usernames.txt', 'a') as file:
-        file.write(text + '\n')
-
-
-def read_usernames():
-    with open('./usernames.txt', 'r') as file:
-        lines = file.read()
-    return lines
 
 
 if __name__ == '__main__':
