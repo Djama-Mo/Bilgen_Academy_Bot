@@ -36,7 +36,7 @@ def check_user(uid):
     user_ids = cursor.fetchall()
 
     for t_id in user_ids:
-        if t_id == uid:
+        if t_id[0] == uid:
             return 0
 
     db.commit()
