@@ -395,6 +395,26 @@ def tanymger_tech_chat_kz(callback):
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nВыберите...\n\n', reply_markup=markup_url)
 
 
+@bot.callback_query_handler(func=lambda callback: callback.data == f'{tanymger_expert_kz} Чатқа өту')
+def tanymger_expert_chat_kz(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Tanymger Expert', url='https://t.me/joinchat/IfxKFBpLXpRAh2DHvgyjLQ')
+
+    markup_url.add(button_1)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nТаңдаңыз...\n\n', reply_markup=markup_url)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'Перейти в чат {tanymger_expert_ru}')
+def tanymger_expert_chat_kz(callback):
+    markup_url = InlineKeyboardMarkup()
+
+    button_1 = InlineKeyboardButton(text='Tanymger Expert', url='https://t.me/joinchat/IfxKFBpLXpRAh2DHvgyjLQ')
+
+    markup_url.add(button_1)
+    bot.send_message(chat_id=callback.message.chat.id, text='\n\nВыберите...\n\n', reply_markup=markup_url)
+
+
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Төлем жүйесі')
 def reply_video(callback):
     try:
@@ -571,6 +591,8 @@ def send_welcome(message: Message):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     button_kz = KeyboardButton('🇰🇿 Қазақша')
     button_ru = KeyboardButton('🇷🇺 Русский')
+    markup.add(button_kz).add(button_ru)
+    bot.send_message(chat_id=message.chat.id, text=say_hello, reply_markup=markup)
     uid = message.chat.id
     uname = message.chat.username
     if check_user(uid=uid) == 1:
@@ -578,8 +600,6 @@ def send_welcome(message: Message):
             add_user(uid=uid, uname=uname)
         else:
             add_user(uid=uid)
-    markup.add(button_kz).add(button_ru)
-    bot.send_message(chat_id=message.chat.id, text=say_hello, reply_markup=markup)
 
 
 @bot.message_handler(func=lambda message: True)
@@ -744,7 +764,7 @@ mistake = 'Введен не корректный запрос, нажмите �
 tanymger_kz = 'Tanymger Expert – заманауи электронды оқулық жасау бойынша авторлар мен баспа қызметкерлерінің ' \
               'біліктілігін арттыру курсы.'
 
-tech_teach_kz = 'Tanymger Tech – информатика пәнінің мұғалімдеріне арналған олимпиада.'
+tech_teach_kz = 'Tanymger Tech – информатика пәні мұғалімдеріне арналған курс.'
 
 oys_kz = 'Oysana – менталды арифметика курсы.'
 
@@ -774,7 +794,7 @@ info_1_2_str = f'{tech_teach_kz}\n\n{techr_kz}'
 tanymger_ru = 'Tanymger  Expert – курс повышения квалификации для авторов и сотрудников издании ' \
               'по разработке электронного учебника.'
 
-tech_teach_ru = 'Tanymger Tech – олимпиада для учителей информатики.'
+tech_teach_ru = 'Tanymger Tech – курс для учителей информатики.'
 
 tog_ru = 'Тоғызқұмалақ – обучение учителей физкультуры национальной игре «Тогызкумалак».'
 
