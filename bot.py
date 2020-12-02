@@ -20,17 +20,20 @@ buttons = dict()
 
 
 #mysql://b7aac2f71a4e20:87acfc30@us-cdbr-east-02.cleardb.com/heroku_1f7e85d5a98fc33?reconnect=true
-djama_id = 714484918
-djama_un = 'djama28'
 
-db = connector.connect(host='us-cdbr-east-02.cleardb.com',
-                       user='b7aac2f71a4e20',
-                       password='87acfc30')
 
-cursor = db.cursor()
+def connect():
+    db = connector.connect(host='us-cdbr-east-02.cleardb.com',
+                           user='b7aac2f71a4e20',
+                           password='87acfc30')
+
+    # cursor = db.cursor()
+    return db
 
 
 def check_user(uid):
+    db = connect()
+    cursor = db.cursor()
     choose_users = '''SELECT user_id FROM heroku_1f7e85d5a98fc33.users'''
     cursor.execute(choose_users)
     user_ids = cursor.fetchall()
@@ -44,6 +47,8 @@ def check_user(uid):
 
 
 def add_user(uid, uname=''):
+    db = connect()
+    cursor = db.cursor()
     add_user = '''INSERT INTO heroku_1f7e85d5a98fc33.users 
                   (user_id, username) 
                   VALUES (%s, %s)'''
@@ -55,6 +60,8 @@ def add_user(uid, uname=''):
 
 
 def show_users(flag=0):
+    db = connect()
+    cursor = db.cursor()
     choose_users = '''SELECT * FROM heroku_1f7e85d5a98fc33.users'''
     cursor.execute(choose_users)
     users = cursor.fetchall()
@@ -593,6 +600,7 @@ def send_welcome(message: Message):
     button_ru = KeyboardButton('🇷🇺 Русский')
     markup.add(button_kz).add(button_ru)
     bot.send_message(chat_id=message.chat.id, text=say_hello, reply_markup=markup)
+    # cursor.execute('''SHOW VARIABLES LIKE "connect_timeout";''')
     uid = message.chat.id
     uname = message.chat.username
     if check_user(uid=uid) == 1:
