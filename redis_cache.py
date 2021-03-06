@@ -1,9 +1,10 @@
 import json
-import os
 from urllib.parse import urlparse
 import redis
 
-url = urlparse(os.environ.get("REDIS_URL"))
+REDIS_URL = 'redis://:pf41ce38d95403b8ab2177eb2ffa1cccd20bc15d62923012efaf2548c33e07879@ec2-54-204-192-122.' \
+            'compute-1.amazonaws.com:20859'
+url = urlparse(REDIS_URL)
 rediska = redis.Redis(host=url.hostname, port=url.port, username=url.username, password=url.password, ssl=True,
                       ssl_cert_reqs=None)
 
