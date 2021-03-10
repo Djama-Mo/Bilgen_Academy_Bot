@@ -2,7 +2,9 @@ import json
 from urllib.parse import urlparse
 import redis
 
-REDIS_URL = 'rediss://:pf41ce38d95403b8ab2177eb2ffa1cccd20bc15d62923012efaf2548c33e07879@ec2-54-204-192-122.compute-1.amazonaws.com:20860'
+
+REDIS_URL = 'rediss://:pf41ce38d95403b8ab2177eb2ffa1cccd20bc15d62923012efaf2548c33e07879@ec2-54-204-192-122.compute-1' \
+            '.amazonaws.com:20860'
 url = urlparse(REDIS_URL)
 rediska = redis.Redis(host=url.hostname, port=url.port, username=url.username, password=url.password, ssl=True,
                       ssl_cert_reqs=None)
@@ -103,7 +105,6 @@ def write_question_num(chat_id, question_num):
     rediska.set(f'{chat_id} - question_num', question_num, ex=3600)
 
 
-
 def get_course_id(chat_id):
     course_id = rediska.get(f'{chat_id} - course_id')
     if course_id is None:
@@ -114,3 +115,16 @@ def get_course_id(chat_id):
 
 def write_course_id(chat_id, course_id):
     rediska.set(f'{chat_id} - course_id', course_id, ex=7200)
+
+
+def write_course_name(course, fullname):
+    rediska.set(f'cert_{course}', f'{fullname}', ex=3600)
+
+
+def get_course_name(course):
+    course_name = rediska.get(f'{course}')
+    if course_name is None:
+        return False
+    rediska.delete(f'{course}')
+    return course_name.decode('utf-8')
+

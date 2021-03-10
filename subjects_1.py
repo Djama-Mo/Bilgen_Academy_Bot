@@ -205,7 +205,7 @@ def reply_doda_dir_ru(callback, bot):
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
     button_back = InlineKeyboardButton(text='Назад', callback_data=f'Олимпиады 1')
-    markup_url.add(button_1, button_2).add(button_back)
+    markup_url.add(button_1).add(button_back)
     bot.send_message(chat_id=callback.message.chat.id, text='Направления',
                      reply_markup=markup_url, parse_mode='html')
 
@@ -281,7 +281,7 @@ def reply_doda_dir_kz(callback, bot):
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
     button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Олимпиады 1kz')
-    markup_url.add(button_1, button_2).add(button_back)
+    markup_url.add(button_1).add(button_back)
     bot.send_message(chat_id=callback.message.chat.id, text='Бағыттары',
                      reply_markup=markup_url, parse_mode='html')
 

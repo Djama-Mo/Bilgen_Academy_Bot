@@ -30,7 +30,7 @@ class SQL_db:
 
 	def update_id(self, chat_id, iin):
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle_additional.user_add_info 
+			self.cursor.execute(f'''UPDATE moodle_additional.user_add_info 
 									SET telgram_id=(%s) 
 									WHERE username=(%s);''', (chat_id, iin,))
 		except Error as e:
@@ -42,7 +42,7 @@ class SQL_db:
 	def check_user(self, uid):
 		try:
 			self.cursor.execute(f'''SELECT class, telgram_id, pass_req
-									FROM telegram_moodle_additional.user_add_info
+									FROM moodle_additional.user_add_info
 									WHERE telgram_id={uid}''')
 		except Error as e:
 			logger.error("func check_user")
@@ -58,7 +58,7 @@ class SQL_db:
 	def get_iin(self, chat_id):
 		try:
 			self.cursor.execute(f'''SELECT username 
-									FROM telegram_moodle_additional.user_add_info 
+									FROM moodle_additional.user_add_info 
 									WHERE telgram_id={chat_id}''')
 		except Error as e:
 			logger.error("func get_iin")
@@ -70,7 +70,7 @@ class SQL_db:
 
 	def send_the_region(self, callback, region_id=18):
 		try:
-			self.cursor.execute('''UPDATE telegram_moodle_additional.user_add_info
+			self.cursor.execute('''UPDATE moodle_additional.user_add_info
 									SET region_id=(%s)
 									WHERE telgram_id=(%s)''',
 								(region_id, callback.message.chat.id))
@@ -82,7 +82,7 @@ class SQL_db:
 
 	def update_class(self, class_num, callback):
 		try:
-			self.cursor.execute('''UPDATE telegram_moodle_additional.user_add_info 
+			self.cursor.execute('''UPDATE moodle_additional.user_add_info 
 									SET class=(%s), isTeacher=(%s)
 									WHERE telgram_id=(%s)''',
 								(class_num, 0, callback.message.chat.id))
@@ -94,7 +94,7 @@ class SQL_db:
 
 	def update_teacher(self, callback):
 		try:
-			self.cursor.execute('''UPDATE telegram_moodle_additional.user_add_info 
+			self.cursor.execute('''UPDATE moodle_additional.user_add_info 
                           			SET isTeacher=(%s) 
                           			WHERE telgram_id=(%s)''',
 								(1, callback.message.chat.id))
@@ -106,7 +106,7 @@ class SQL_db:
 
 	def send_number(self, chat_id, number):
 		try:
-			self.cursor.execute('''INSERT INTO telegram_moodle_additional.user_add_info 
+			self.cursor.execute('''INSERT INTO moodle_additional.user_add_info 
 									(username, telgram_id, isMale, region_id, second_region_id, school_id,
 									custom_school, phone, class, class_type, birth_date, kz, promocode_id, isTeacher) 
 									VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)''',
@@ -120,7 +120,7 @@ class SQL_db:
 
 	def delete_number(self, chat_id, number):
 		try:
-			self.cursor.execute(f'''DELETE FROM telegram_moodle_additional.user_add_info 
+			self.cursor.execute(f'''DELETE FROM moodle_additional.user_add_info 
 									WHERE telgram_id={chat_id}''')
 		except Error as e:
 			logger.error("func deleting_number")
@@ -132,12 +132,12 @@ class SQL_db:
 	def send_fio(self, lastname, firstname, username, patronymic):
 		try:
 			if patronymic is not None:
-				self.cursor.execute(f'''UPDATE telegram_moodle.mdl_user 
+				self.cursor.execute(f'''UPDATE moodle.mdl_user 
 										SET lastname=(%s), firstname=(%s) 
 										WHERE username=(%s)''',
 									(lastname, firstname, username))
 			else:
-				self.cursor.execute(f'''UPDATE telegram_moodle.mdl_user 
+				self.cursor.execute(f'''UPDATE moodle.mdl_user 
 										SET lastname=(%s), firstname=(%s), patronymic=(%s)
 										WHERE username=(%s)''',
 									(lastname, firstname, patronymic, username))
@@ -149,7 +149,7 @@ class SQL_db:
 
 	def update_iin(self, username, chat_id):
 		try:
-			self.cursor.execute('''UPDATE telegram_moodle_additional.user_add_info 
+			self.cursor.execute('''UPDATE moodle_additional.user_add_info 
 									SET username=(%s) 
 									WHERE telgram_id=(%s)''',
 								(username, chat_id))
@@ -163,7 +163,7 @@ class SQL_db:
 	def send_iin(self, username):
 		time_now = int(time.time())
 		try:
-			self.cursor.execute('''INSERT INTO telegram_moodle.mdl_user 
+			self.cursor.execute('''INSERT INTO moodle.mdl_user 
             						(auth, confirmed, policyagreed, deleted, suspended, mnethostid, username, password, 
             						emailstop, country, lang, calendartype, timezone, firstaccess, lastaccess, 
             						lastlogin, currentlogin, lastip, picture, descriptionformat, mailformat, maildigest,
@@ -183,7 +183,7 @@ class SQL_db:
 
 	def delete_user(self, username):
 		try:
-			self.cursor.execute(f'''DELETE FROM telegram_moodle_additional.user_add_info 
+			self.cursor.execute(f'''DELETE FROM moodle_additional.user_add_info 
 									WHERE username=(%s)''',
 								(str(username), ))
 		except Error as e:
@@ -194,7 +194,7 @@ class SQL_db:
 
 	def send_password(self, password, username):
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle.mdl_user 
+			self.cursor.execute(f'''UPDATE moodle.mdl_user 
 									SET password=(%s) 
 									WHERE username=(%s)''',
 								(password, username))
@@ -207,7 +207,7 @@ class SQL_db:
 	def profile(self, chat_id):
 		try:
 			self.cursor.execute(f'''SELECT username, class 
-									FROM telegram_moodle_additional.user_add_info 
+									FROM moodle_additional.user_add_info 
 									WHERE telgram_id={str(chat_id)}''')
 		except Error as e:
 			logger.error("func profile")
@@ -219,7 +219,7 @@ class SQL_db:
 	def get_sort_order(self, course_id):
 		try:
 			self.cursor.execute(f'''SELECT sortorder 
-									FROM telegram_moodle.mdl_enrol 
+									FROM moodle.mdl_enrol 
 									WHERE courseid=(%s);''', (course_id, ))
 		except Error as e:
 			logger.error("func get_sort_order")
@@ -231,7 +231,7 @@ class SQL_db:
 	def get_enrol(self, course_id):
 		try:
 			self.cursor.execute(f'''SELECT id 
-									FROM telegram_moodle.mdl_enrol
+									FROM moodle.mdl_enrol
 									WHERE courseid=(%s) and enrol=(%s);''',
 								(course_id, 'manual'))
 		except Error as e:
@@ -246,7 +246,7 @@ class SQL_db:
 		username = self.get_iin(chat_id)
 		try:
 			self.cursor.execute(f'''SELECT id 
-									FROM telegram_moodle.mdl_user
+									FROM moodle.mdl_user
 									WHERE username=(%s);''',
 								(username, ))
 		except Error as e:
@@ -260,7 +260,7 @@ class SQL_db:
 		time_now = int(time.time())
 		user_id = self.get_user_id(chat_id)
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_user_enrolments
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_user_enrolments
 									(enrolid, userid, timestart, timeend, modifierid, timecreated, timemodified)
 									VALUES (%s, %s, %s, %s, %s, %s, %s);''',
 								(enrol_id, user_id, time_now, 0, user_id, time_now, time_now))
@@ -275,7 +275,7 @@ class SQL_db:
 		cur_cash = self.get_cash_value(chat_id)
 		new_cash = cur_cash - cash
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle_additional.purse 
+			self.cursor.execute(f'''UPDATE moodle_additional.purse 
 									SET current_payment_sum=(%s)
 									WHERE username=(%s);''',
 								(new_cash, iin))
@@ -289,7 +289,7 @@ class SQL_db:
 		username = self.get_iin(chat_id)
 		try:
 			self.cursor.execute(f'''SELECT current_payment_sum 
-									FROM telegram_moodle_additional.purse 
+									FROM moodle_additional.purse 
 									WHERE username=(%s);''',
 								(username,))
 		except Error as e:
@@ -303,7 +303,7 @@ class SQL_db:
 
 	def update_genre_(self, callback, is_male=1):
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle_additional.user_add_info 
+			self.cursor.execute(f'''UPDATE moodle_additional.user_add_info 
 									SET isMale=(%s) 
 									WHERE telgram_id=(%s);''',
 								(is_male, callback.message.chat.id))
@@ -315,7 +315,7 @@ class SQL_db:
 
 	def access(self, chat_id):
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle_additional.user_add_info 
+			self.cursor.execute(f'''UPDATE moodle_additional.user_add_info 
 									SET pass_req=(%s) 
 									WHERE telgram_id=(%s);''',
 								(1, chat_id))
@@ -327,7 +327,7 @@ class SQL_db:
 
 	def get_olymp_name(self, chat_id):
 		self.cursor.execute(f'''SELECT fullname 
-								FROM telegram_moodle.mdl_course 
+								FROM moodle.mdl_course 
 								WHERE id=(%s);''',
 							(chat_id, ))
 		try:
@@ -338,11 +338,11 @@ class SQL_db:
 			return ' '
 		return self.cursor.fetchone()[0]
 
-	def get_certificate(self, u_id):
+	def get_certificate(self, u_id, timee):
 		self.cursor.execute(f'''SELECT customcertid 
-								FROM telegram_moodle.mdl_customcert_issues 
-								WHERE userid=(%s);''',
-							(u_id, ))
+								FROM moodle.mdl_customcert_issues 
+								WHERE userid=(%s) and timecreated>(%s);''',
+							(u_id, timee))
 		try:
 			pass
 		except Error as e:
@@ -352,12 +352,11 @@ class SQL_db:
 		return self.cursor.fetchall()
 
 	def get_customcert_one(self, customcert_id):
-		self.cursor.execute(f'''SELECT course 
-								FROM telegram_moodle.mdl_customcert 
+		try:
+			self.cursor.execute(f'''SELECT course, name, id 
+								FROM moodle.mdl_customcert 
 								WHERE id=(%s);''',
 							(customcert_id, ))
-		try:
-			pass
 		except Error as e:
 			logger.error("func get_customcert_one")
 			logger.error(e)
@@ -365,11 +364,11 @@ class SQL_db:
 		return self.cursor.fetchall()
 
 	def get_customcert_list(self, customcert_ids):
-		self.cursor.execute(f'''SELECT course, name, id 
-								FROM telegram_moodle.mdl_customcert
-								WHERE id in {customcert_ids};''')
+
 		try:
-			pass
+			self.cursor.execute(f'''SELECT course, name, id 
+								FROM moodle.mdl_customcert
+								WHERE id in {customcert_ids};''')
 		except Error as e:
 			logger.error("func get_customcert_list")
 			logger.error(e)
@@ -379,7 +378,7 @@ class SQL_db:
 	def get_instance(self, course_id):
 		try:
 			self.cursor.execute(f'''SELECT id
-                      				FROM telegram_moodle.mdl_course_modules
+                      				FROM moodle.mdl_course_modules
                       				WHERE course=(%s) and module=(%s);''', (course_id, 16))
 		except Error as e:
 			logger.error("func get_instance")
@@ -391,7 +390,7 @@ class SQL_db:
 	def get_context(self, instance_id):
 		try:
 			self.cursor.execute(f'''SELECT id
-                      				FROM telegram_moodle.mdl_context
+                      				FROM moodle.mdl_context
                       				WHERE instanceid=(%s) and contextlevel=(%s);''', (instance_id, 70))
 		except Error as e:
 			logger.error("func get_context")
@@ -403,7 +402,7 @@ class SQL_db:
 	def get_context_category(self, course_id):
 		try:
 			self.cursor.execute(f'''SELECT id
-                      				FROM telegram_moodle.mdl_context
+                      				FROM moodle.mdl_context
                       				WHERE instanceid=(%s) and contextlevel=(%s);''', (course_id, 50))
 		except Error as e:
 			logger.error("func get_context_category")
@@ -415,7 +414,7 @@ class SQL_db:
 	def get_quiz(self, course_id):
 		try:
 			self.cursor.execute(f'''SELECT id, questionsperpage, timelimit
-                      				FROM telegram_moodle.mdl_quiz
+                      				FROM moodle.mdl_quiz
                       				WHERE course=(%s);''', (course_id, ))
 		except Error as e:
 			logger.error("func get_quiz")
@@ -427,7 +426,7 @@ class SQL_db:
 	def get_category(self, context_id):
 		try:
 			self.cursor.execute(f'''SELECT id
-                      				FROM telegram_moodle.mdl_question_categories
+                      				FROM moodle.mdl_question_categories
                       				WHERE contextid=(%s) and sortorder=(%s);''', (context_id, 999))
 		except Error as e:
 			logger.error("func get_category")
@@ -439,7 +438,7 @@ class SQL_db:
 	def get_questions(self, category_id):
 		try:
 			self.cursor.execute(f'''SELECT id
-                      				FROM telegram_moodle.mdl_question
+                      				FROM moodle.mdl_question
                       				WHERE category=(%s);''', (category_id, ))
 		except Error as e:
 			logger.error("func get_questions")
@@ -455,7 +454,7 @@ class SQL_db:
 	def get_fucking_questions(self, category_id):
 		try:
 			self.cursor.execute(f'''SELECT id
-                      				FROM telegram_moodle.mdl_question
+                      				FROM moodle.mdl_question
                       				WHERE category=(%s) and parent=(%s);''', (category_id, 0))
 		except Error as e:
 			logger.error("func get_questions")
@@ -475,7 +474,7 @@ class SQL_db:
 	def get_questiontext(self, question):
 		try:
 			self.cursor.execute(f'''SELECT questiontext
-                          			FROM telegram_moodle.mdl_question
+                          			FROM moodle.mdl_question
                           			WHERE id=(%s);''', (question,))
 		except Error as e:
 			logger.error("func get_questionstext")
@@ -490,7 +489,7 @@ class SQL_db:
 	def get_answers(self, question):
 		try:
 			self.cursor.execute(f'''SELECT id, answer, fraction
-                          			FROM telegram_moodle.mdl_question_answers
+                          			FROM moodle.mdl_question_answers
                           			WHERE question=(%s);''', (question,))
 		except Error as e:
 			logger.error("func get_answers")
@@ -502,7 +501,7 @@ class SQL_db:
 	def get_answers_text(self, ans_id, flag=1):
 		try:
 			self.cursor.execute(f'''SELECT answer
-                          			FROM telegram_moodle.mdl_question_answers
+                          			FROM moodle.mdl_question_answers
                           			WHERE id=(%s);''', (ans_id,))
 		except Error as e:
 			logger.error("func get_answers_text")
@@ -523,7 +522,7 @@ class SQL_db:
 				str_value += f'{num}, '
 			value = str_value[:-2]
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_question_attempt_step_data
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_question_attempt_step_data
                       				(attemptstepid, name, value)
                       				VALUES (%s, %s, %s)''',
 								(attemptstepid, name, value))
@@ -536,7 +535,7 @@ class SQL_db:
 	def set_attempts_step(self, attempt_id, userid, answers):
 		time_ = int(time.time())
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_question_attempt_steps
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_question_attempt_steps
                   					(questionattemptid, sequencenumber, state, timecreated, userid)
                   					VALUES (%s, %s, %s, %s, %s)''',
 								(attempt_id, 0, 'todo', time_, userid))
@@ -548,7 +547,7 @@ class SQL_db:
 		self.set_attempts_step_data(lastrowid, '_order', answers)
 
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_question_attempt_steps
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_question_attempt_steps
                   					(questionattemptid, sequencenumber, state, timecreated, userid)
                   					VALUES (%s, %s, %s, %s, %s)''',
 								(attempt_id, 1, 'complete', time_, userid))
@@ -560,7 +559,7 @@ class SQL_db:
 		self.set_attempts_step_data(lastrowid, 'answer', 0)
 
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_question_attempt_steps
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_question_attempt_steps
                   					(questionattemptid, sequencenumber, state, fraction, timecreated, userid)
                   					VALUES (%s, %s, %s, %s, %s, %s)''',
 								(attempt_id, 2, 'gradedright', 1.0000000, time_, userid))
@@ -574,7 +573,7 @@ class SQL_db:
 
 	def set_question_attempts(self, questionusageid, j, question, questionsummary, rightanswer):
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_question_attempts
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_question_attempts
                          			(questionusageid, slot, behaviour, questionid, variant, maxmark, minfraction, 
                          			maxfraction, flagged, questionsummary, rightanswer, responsesummary, timemodified)
                          			VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);''',
@@ -589,7 +588,7 @@ class SQL_db:
 
 	def set_question_usages(self, context_id):
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_question_usages
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_question_usages
                     				(contextid, component, preferredbehaviour) 
                     				VALUES (%s, %s, %s);''',
 								(context_id, 'mod_quiz', 'deferredfeedback'))
@@ -602,7 +601,7 @@ class SQL_db:
 
 	def set_quiz_attempts(self, quiz, userid, uniqueid, layout, timestart):
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_quiz_attempts
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_quiz_attempts
                     				(quiz, userid, attempt, uniqueid, layout, currentpage, preview, state, timestart, 
                     				timemodifiedoffline, sumgrades) 
                     				VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);''',
@@ -617,7 +616,7 @@ class SQL_db:
 	def update_quiz_attempts(self, overall, quiz_attempt_id):
 		time_ = int(time.time())
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle.mdl_quiz_attempts
+			self.cursor.execute(f'''UPDATE moodle.mdl_quiz_attempts
                     				SET sumgrades=(%s), timemodified=(%s), timefinish=(%s)
                     				WHERE id=(%s);''',
 								(overall, time_, time_, quiz_attempt_id))
@@ -630,7 +629,7 @@ class SQL_db:
 	def get_enrol_id(self, userid):
 		try:
 			self.cursor.execute(f'''SELECT enrolid 
-                  					FROM telegram_moodle.mdl_user_enrolments
+                  					FROM moodle.mdl_user_enrolments
                   					WHERE userid=(%s);''',
 								(userid, ))
 		except Error as e:
@@ -642,7 +641,7 @@ class SQL_db:
 	def select_course_id(self, enrol_id):
 		try:
 			self.cursor.execute(f'''SELECT courseid 
-									FROM telegram_moodle.mdl_enrol 
+									FROM moodle.mdl_enrol 
 									WHERE id=(%s);''',
 								(enrol_id,))
 		except Error as e:
@@ -654,7 +653,7 @@ class SQL_db:
 	def select_course_ids(self, enrol_id):
 		try:
 			self.cursor.execute(f'''SELECT courseid 
-									FROM telegram_moodle.mdl_enrol 
+									FROM moodle.mdl_enrol 
 									WHERE id in {enrol_id};''')
 		except Error as e:
 			logger.error("func select_course_ids")
@@ -664,7 +663,7 @@ class SQL_db:
 
 	def delete_enrol_id(self, enrol_id):
 		try:
-			self.cursor.execute(f'''DELETE FROM telegram_moodle.mdl_user_enrolments 
+			self.cursor.execute(f'''DELETE FROM moodle.mdl_user_enrolments 
                             		WHERE enrolid=(%s);''',
 								(enrol_id, ))
 		except Error as e:
@@ -675,7 +674,7 @@ class SQL_db:
 
 	def delete_quiz_attempt(self, quiz_id, user_id):
 		try:
-			self.cursor.execute(f'''DELETE FROM telegram_moodle.mdl_quiz_attempts 
+			self.cursor.execute(f'''DELETE FROM moodle.mdl_quiz_attempts 
                             		WHERE quiz=(%s) and userid=(%s);''',
 								(quiz_id, user_id))
 		except Error as e:
@@ -689,7 +688,7 @@ class SQL_db:
 		if answer is not None:
 			answer += '\n'
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle.mdl_question_attempts 
+			self.cursor.execute(f'''UPDATE moodle.mdl_question_attempts 
 									SET responsesummary=(%s), timemodified=(%s) 
 									WHERE questionid=(%s) and questionusageid=(%s);''',
 								(answer, time_, question_id, usage_id))
@@ -702,7 +701,7 @@ class SQL_db:
 	def update_question_attempt_step(self, questionattemptid):
 		time_ = int(time.time())
 		try:
-			self.cursor.execute('''UPDATE telegram_moodle.mdl_question_attempt_steps
+			self.cursor.execute('''UPDATE moodle.mdl_question_attempt_steps
 								   SET state=(%s), fraction=(%s), timecreated=(%s)
 								   WHERE questionattemptid=(%s) and sequencenumber=(%s);''',
 								("gradedwrong", 0.0000000, time_, questionattemptid, 2))
@@ -714,7 +713,7 @@ class SQL_db:
 
 	def update_question_attempt_step_data(self, value, attemptstepid):
 		try:
-			self.cursor.execute(f'''UPDATE telegram_moodle.mdl_question_attempt_step_data
+			self.cursor.execute(f'''UPDATE moodle.mdl_question_attempt_step_data
 									SET value=(%s)
 									WHERE attemptstepid=(%s);''',
 								(value, attemptstepid))
@@ -727,7 +726,7 @@ class SQL_db:
 	def get_attempt_step(self, attemptid):
 		try:
 			self.cursor.execute(f'''SELECT id 
-									FROM telegram_moodle.mdl_question_attempt_steps
+									FROM moodle.mdl_question_attempt_steps
 									WHERE questionattemptid=(%s) and sequencenumber=(%s);''',
 								(attemptid, 2))
 		except Error as e:
@@ -739,7 +738,7 @@ class SQL_db:
 	def select_grade_attempt_step(self, attemptid):
 		try:
 			self.cursor.execute(f'''SELECT fraction 
-									FROM telegram_moodle.mdl_question_attempt_steps
+									FROM moodle.mdl_question_attempt_steps
 									WHERE questionattemptid=(%s) and sequencenumber=(%s);''',
 								(attemptid, 2))
 		except Error as e:
@@ -751,7 +750,7 @@ class SQL_db:
 	def select_all_question_attempts(self, usage_id):
 		try:
 			self.cursor.execute(f'''SELECT id 
-									FROM telegram_moodle.mdl_question_attempts
+									FROM moodle.mdl_question_attempts
 									WHERE questionusageid=(%s);''',
 								(usage_id, ))
 		except Error as e:
@@ -763,7 +762,7 @@ class SQL_db:
 	def select_id_question_attempts(self, question_id, usage_id):
 		try:
 			self.cursor.execute(f'''SELECT id 
-									FROM telegram_moodle.mdl_question_attempts
+									FROM moodle.mdl_question_attempts
 									WHERE questionid=(%s) and questionusageid=(%s);''',
 								(question_id, usage_id))
 		except Error as e:
@@ -772,10 +771,24 @@ class SQL_db:
 			return
 		return self.cursor.fetchone()[0]
 
+	def select_code_customcert(self, code):
+		try:
+			self.cursor.execute('''SELECT * 
+									FROM moodle.mdl_customcert_issues
+									WHERE code=(%s);''', (code, ))
+		except Error as e:
+			logger.error('func select_code_customcert')
+			logger.error(e)
+			return
+		result = self.cursor.fetchall()
+		if len(result) == 0:
+			return None
+		return result
+
 	def insert_customcert(self, userid, customcertid, code):
 		time_ = int(time.time())
 		try:
-			self.cursor.execute(f'''INSERT INTO telegram_moodle.mdl_customcert_issues
+			self.cursor.execute(f'''INSERT INTO moodle.mdl_customcert_issues
 		                    		(userid, customcertid, code, emailed, timecreated) 
 		                    		VALUES (%s, %s, %s, %s, %s);''',
 								(userid, customcertid, code, 0, time_))
@@ -788,7 +801,7 @@ class SQL_db:
 	def select_customcertid(self, course, level):
 		try:
 			self.cursor.execute(f'''SELECT customcert_id
-									FROM telegram_moodle_additional.customcert_additional
+									FROM moodle_additional.customcert_additional
 									WHERE course=(%s) and level=(%s);''',
 								(course, level))
 		except Error as e:
@@ -796,6 +809,56 @@ class SQL_db:
 			logger.error(e)
 			return
 		return self.cursor.fetchone()[0]
+
+	def select_customcertid_all(self, course):
+		try:
+			self.cursor.execute(f'''SELECT customcert_id
+									FROM moodle_additional.customcert_additional
+									WHERE course=(%s)''',
+								(course, ))
+		except Error as e:
+			logger.error("func select_customcertid_all")
+			logger.error(e)
+			return
+		return self.cursor.fetchall()
+
+	def select_customcertid_userid_to_delete(self, userid, customcert_id):
+		try:
+			self.cursor.execute(f'''SELECT id
+									FROM moodle.mdl_customcert_issues
+									WHERE userid=(%s) and customcertid=(%s);''',
+								(userid, customcert_id))
+		except Error as e:
+			logger.error("func select_customcertid_all")
+			logger.error(e)
+			return
+		return self.cursor.fetchall()
+
+	def check_quiz_aatem(self, userid, quiz):
+		try:
+			self.cursor.execute(f'''SELECT id
+									FROM moodle.mdl_quiz_attempts
+									WHERE userid=(%s) and quiz=(%s);''',
+								(userid, quiz))
+		except Error as e:
+			logger.error("func check_quiz_aatem")
+			logger.error(e)
+			return
+		result = self.cursor.fetchall()
+		if len(result) == 0:
+			return None
+		return result
+
+	def delete_customcert(self, is_id):
+		try:
+			self.cursor.execute(f'''DELETE FROM moodle.mdl_customcert_issues
+									WHERE id=(%s);''',
+								(is_id, ))
+		except Error as e:
+			logger.error("func delete_customcert")
+			logger.error(e)
+			return
+		self.connect.commit()
 
 
 def main():

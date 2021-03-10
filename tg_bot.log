@@ -1,0 +1,297 @@
+2021-03-10 14:13:48,755 TeleBot - ERROR:ReadTimeout occurred, args=(ReadTimeoutError("HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)",),)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 426, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1373, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 311, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 272, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 410, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 428, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 336, in _raise_timeout
+    self, url, "Read timed out. (read timeout=%s)" % timeout_value
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 285, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1), timeout=timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 255, in get_updates
+    json_updates = apihelper.get_updates(self.token, offset, limit, timeout, allowed_updates)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 241, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 104, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)
+
+2021-03-10 14:31:41,341 MySQL_db - ERROR:func set_user_enrolments
+2021-03-10 14:31:41,342 MySQL_db - ERROR:1062 (23000): Duplicate entry '5720-2356' for key 'mdl_userenro_enruse_uix'
+2021-03-10 14:32:22,085 TeleBot - ERROR:ApiTelegramException occurred, args=('A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found',)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 5975, in write_answer
+    bot.delete_message(chat_id=chat_id, message_id=msg_id - 1)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 662, in delete_message
+    return apihelper.delete_message(self.token, chat_id, message_id, timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 899, in delete_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 108, in _make_request
+    json_result = _check_result(method_name, result)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 135, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found
+
+2021-03-10 14:32:22,085 TeleBot - ERROR:A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found
+2021-03-10 14:32:45,608 TeleBot - ERROR:ApiHTTPException occurred, args=("A request to the Telegram API was unsuccessful. The server returned HTTP 414 Request-URI Too Large. Response body:\n[b'<html>\\r\\n<head><title>414 Request-URI Too Large</title></head>\\r\\n<body>\\r\\n<center><h1>414 Request-URI Too Large</h1></center>\\r\\n<hr><center>nginx/1.16.1</center>\\r\\n</body>\\r\\n</html>\\r\\n']",)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 127, in _check_result
+    result_json = result.json()
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/models.py", line 898, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "/usr/lib/python3.6/json/__init__.py", line 354, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.6/json/decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.6/json/decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 5980, in write_answer
+    send_question(callback)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 6034, in send_question
+    bot.send_message(chat_id, question_text)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 641, in send_message
+    reply_markup, parse_mode, disable_notification, timeout))
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 201, in send_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 108, in _make_request
+    json_result = _check_result(method_name, result)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 130, in _check_result
+    raise ApiHTTPException(method_name, result)
+telebot.apihelper.ApiHTTPException: A request to the Telegram API was unsuccessful. The server returned HTTP 414 Request-URI Too Large. Response body:
+[b'<html>\r\n<head><title>414 Request-URI Too Large</title></head>\r\n<body>\r\n<center><h1>414 Request-URI Too Large</h1></center>\r\n<hr><center>nginx/1.16.1</center>\r\n</body>\r\n</html>\r\n']
+
+2021-03-10 14:32:45,609 TeleBot - ERROR:A request to the Telegram API was unsuccessful. The server returned HTTP 414 Request-URI Too Large. Response body:
+[b'<html>\r\n<head><title>414 Request-URI Too Large</title></head>\r\n<body>\r\n<center><h1>414 Request-URI Too Large</h1></center>\r\n<hr><center>nginx/1.16.1</center>\r\n</body>\r\n</html>\r\n']
+2021-03-10 14:33:03,602 TeleBot - ERROR:ApiTelegramException occurred, args=('A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found',)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 5975, in write_answer
+    bot.delete_message(chat_id=chat_id, message_id=msg_id - 1)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 662, in delete_message
+    return apihelper.delete_message(self.token, chat_id, message_id, timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 899, in delete_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 108, in _make_request
+    json_result = _check_result(method_name, result)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 135, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found
+
+2021-03-10 14:33:03,603 TeleBot - ERROR:A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found
+2021-03-10 14:54:22,698 MySQL_db - ERROR:func set_quiz_attempts
+2021-03-10 14:54:22,699 MySQL_db - ERROR:1062 (23000): Duplicate entry '2514-2356-1' for key 'mdl_quizatte_quiuseatt_uix'
+2021-03-10 14:54:22,750 MySQL_db - ERROR:func set_quiz_attempts
+2021-03-10 14:54:22,751 MySQL_db - ERROR:1062 (23000): Duplicate entry '2514-2356-1' for key 'mdl_quizatte_quiuseatt_uix'
+2021-03-10 14:54:22,789 TeleBot - ERROR:DataError occurred, args=("Invalid input of type: 'NoneType'. Convert to a bytes, string, int or float first.",)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 3239, in ling_2_ru
+    start_test(callback, 1500, 1835)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 6240, in start_test
+    redis_cache.write_quiz_attempts(callback.message.chat.id, quiz_attemp_id)
+  File "/home/djama/Рабочий стол/Bilgen_bot/redis_cache.py", line 94, in write_quiz_attempts
+    rediska.set(f'{chat_id} - quiz_attempt_id', quiz_attempt_id, ex=7200)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/client.py", line 1801, in set
+    return self.execute_command('SET', *pieces)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/client.py", line 900, in execute_command
+    conn.send_command(*args)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/connection.py", line 725, in send_command
+    self.send_packed_command(self.pack_command(*args),
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/connection.py", line 775, in pack_command
+    for arg in imap(self.encoder.encode, args):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/connection.py", line 120, in encode
+    "bytes, string, int or float first." % typename)
+redis.exceptions.DataError: Invalid input of type: 'NoneType'. Convert to a bytes, string, int or float first.
+
+2021-03-10 14:55:28,024 TeleBot - ERROR:TypeError occurred, args=("'NoneType' object is not subscriptable",)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 5979, in write_answer
+    rewrite_results(chat_id, active_quiz)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 5990, in rewrite_results
+    attempt_id = sql.select_id_question_attempts(quest_id, usage_id)
+  File "/home/djama/Рабочий стол/Bilgen_bot/MySQL_db.py", line 773, in select_id_question_attempts
+    return self.cursor.fetchone()[0]
+TypeError: 'NoneType' object is not subscriptable
+
+2021-03-10 15:07:02,129 TeleBot - ERROR:ReadTimeout occurred, args=(ReadTimeoutError("HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)",),)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 426, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1373, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 311, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 272, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 410, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 428, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 336, in _raise_timeout
+    self, url, "Read timed out. (read timeout=%s)" % timeout_value
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 285, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1), timeout=timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 255, in get_updates
+    json_updates = apihelper.get_updates(self.token, offset, limit, timeout, allowed_updates)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 241, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 104, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)
+
+2021-03-10 16:08:04,552 TeleBot - ERROR:TypeError occurred, args=("'NoneType' object is not subscriptable",)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 3239, in ling_2_ru
+    start_test(callback, 1500, 1835)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 6214, in start_test
+    if check_enrolments(callback, course_id) == 0:
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 6144, in check_enrolments
+    cust_id = sql.select_customcertid_userid_to_delete(u_id, customcerts)
+  File "/home/djama/Рабочий стол/Bilgen_bot/MySQL_db.py", line 840, in select_customcertid_userid_to_delete
+    return self.cursor.fetchone()[0]
+TypeError: 'NoneType' object is not subscriptable
+
+2021-03-10 18:31:31,150 TeleBot - ERROR:ProgrammingError occurred, args=(1064, "1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[1329, 1330, 1374]' at line 3", '42000')
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 506, in cmd_query
+    raw_as_string=raw_as_string)
+_mysql_connector.MySQLInterfaceError: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[1329, 1330, 1374]' at line 3
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 6313, in send_certs
+    data_cert = sql.get_customcert_list(cust_ids_list)
+  File "/home/djama/Рабочий стол/Bilgen_bot/MySQL_db.py", line 369, in get_customcert_list
+    WHERE id in {customcert_ids};''')
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/mysql/connector/cursor_cext.py", line 266, in execute
+    raw_as_string=self._raw_as_string)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/mysql/connector/connection_cext.py", line 509, in cmd_query
+    sqlstate=exc.sqlstate)
+mysql.connector.errors.ProgrammingError: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '[1329, 1330, 1374]' at line 3
+
+2021-03-10 18:39:35,818 MySQL_db - ERROR:func set_quiz_attempts
+2021-03-10 18:39:35,818 MySQL_db - ERROR:1062 (23000): Duplicate entry '2508-2356-1' for key 'mdl_quizatte_quiuseatt_uix'
+2021-03-10 18:39:35,858 MySQL_db - ERROR:func set_quiz_attempts
+2021-03-10 18:39:35,858 MySQL_db - ERROR:1062 (23000): Duplicate entry '2508-2356-1' for key 'mdl_quizatte_quiuseatt_uix'
+2021-03-10 18:39:35,864 TeleBot - ERROR:DataError occurred, args=("Invalid input of type: 'NoneType'. Convert to a bytes, string, int or float first.",)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 2309, in geo_test
+    start_test(callback, 350, 1829)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 6246, in start_test
+    redis_cache.write_quiz_attempts(callback.message.chat.id, quiz_attemp_id)
+  File "/home/djama/Рабочий стол/Bilgen_bot/redis_cache.py", line 94, in write_quiz_attempts
+    rediska.set(f'{chat_id} - quiz_attempt_id', quiz_attempt_id, ex=7200)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/client.py", line 1801, in set
+    return self.execute_command('SET', *pieces)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/client.py", line 900, in execute_command
+    conn.send_command(*args)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/connection.py", line 725, in send_command
+    self.send_packed_command(self.pack_command(*args),
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/connection.py", line 775, in pack_command
+    for arg in imap(self.encoder.encode, args):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/redis/connection.py", line 120, in encode
+    "bytes, string, int or float first." % typename)
+redis.exceptions.DataError: Invalid input of type: 'NoneType'. Convert to a bytes, string, int or float first.
+

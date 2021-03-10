@@ -6055,7 +6055,9 @@ def level(overall):
 
 def hash_code_cert(userid, course_id):
     rand_num = random.randint(100, 1000000)
-    code = f'{userid}-{course_id}-telegram-{rand_num}'.encode()
+    rand_num_1 = random.randint(100, 1000000)
+    rand_num_2 = random.randint(100, 1000000)
+    code = f'{userid}-{course_id}-telegram-{rand_num}-{rand_num_1}-{rand_num_2}'.encode()
     hash_code = hashlib.md5(code).hexdigest()
     return hash_code
 
@@ -6076,9 +6078,13 @@ def send_result(chat_id):
     course_id = redis_cache.get_course_id(chat_id)
     user_id = sql.get_user_id(chat_id)
     hash_code = hash_code_cert(user_id, course_id)
+    while sql.select_code_customcert(hash_code) is not None:
+        hash_code = hash_code_cert(user_id, course_id)
+    name = None
     try:
         customcertid = sql.select_customcertid(course_id, level_)
         sql.insert_customcert(user_id, customcertid, hash_code)
+        name = sql.get_customcert_one(customcertid)
     except TypeError as e:
         logger.error("course_id is not configured")
         logger.error(e)
@@ -6092,6 +6098,19 @@ def send_result(chat_id):
     bot.send_message(chat_id, text=f'Тест завершен\nВы набрали:\n{overall}% правильных ответов '
                                    f'({result}/{len(question_attempts_id)})\n'
                                    f'Можете перейти в начало:\n/start')
+    if name is not None:
+        fullname = sql.get_olymp_name(name[0][0])
+        text = f'{fullname}'
+        str_telegram = f'{user_id};{customcertid};telgrBilgen'.encode()
+        telegram = hashlib.sha512(str_telegram).hexdigest()
+        bot.send_document(chat_id=chat_id, data=f'https://bilgen.academy/mod/customcert/'
+                                                                 f'my_certificates.php?'
+                                                                 f'userid={user_id}'
+                                                                 f'&certificateid={customcertid}'
+                                                                 f'&downloadcert=1'
+                                                                 f'&telegram={telegram}')
+        bot.send_message(chat_id=chat_id, text=text)
+        bot.send_message(chat_id=chat_id, text='Ваш сертификат ⬆️')
 
 
 
@@ -6121,6 +6140,12 @@ def check_enrolments(callback, c_id):
             time.sleep(10)
             if delete_flag == 1:
                 quiz_id = sql.get_quiz(c_id)[0]
+                customcerts = sql.select_customcertid_all(c_id)
+                for item in customcerts:
+                    cust_id = sql.select_customcertid_userid_to_delete(u_id, item[0])
+                    if len(cust_id) > 0:
+                        break
+                sql.delete_customcert(cust_id[0][0])
                 sql.delete_quiz_attempt(quiz_id, u_id)
                 sql.delete_enrol_id(e_ids_list[i])
                 delete_flag = 0
@@ -6164,6 +6189,17 @@ fuckin_dictionary = {
     1846: 2471,
 }
 
+doda_time = [
+    2521,
+    2520,
+    2519,
+    2518,
+    2517,
+    2516,
+    2515,
+    2514,
+]
+
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'delete_course')
 def delete_course(callback):
@@ -6175,10 +6211,19 @@ def delete_course(callback):
     bot.delete_message(callback.message.chat.id, m.message_id)
 
 
+def check_quiz_attempt(quiz, uid):
+    res = sql.check_quiz_aatem(uid, quiz)
+    if res is None:
+        return 1
+    return 0
+
+
 def start_test(callback, cost, course_id):
     cash = sql.get_cash_value(callback.message.chat.id)
+    uid = sql.get_user_id(callback.message.chat.id)
+    quiz = sql.get_quiz(course_id)
     if int(cash) >= cost:
-        if check_enrolments(callback, course_id) == 0:
+        if check_enrolments(callback, course_id) == 0 or check_quiz_attempt(quiz[0], uid) == 0:
             menu(callback.message.chat.id)
             return
         try:
@@ -6187,7 +6232,7 @@ def start_test(callback, cost, course_id):
             pass
         enrol_id = sql.get_enrol(course_id)
         sql.set_user_enrolments(callback.message.chat.id, enrol_id)
-        sql.sub_cash(callback.message.chat.id, cost)
+
         instance_id = sql.get_instance(course_id)
         flag = 0
         try:
@@ -6197,13 +6242,15 @@ def start_test(callback, cost, course_id):
         except KeyError:
             context_id = sql.get_context(instance_id)
 
-        quiz = sql.get_quiz(course_id)
-        timeout = quiz[2] // quiz[1]
+        if quiz[0] in doda_time:
+            timeout = 240
+        else:
+            timeout = quiz[2] // quiz[1]
         unique_id = sql.set_question_usages(context_id)
         redis_cache.write_usage(callback.message.chat.id, unique_id)
-        quiz_attemp_id = set_quiz_attempts(quiz, sql.get_user_id(callback.message.chat.id),unique_id)
+        quiz_attemp_id = set_quiz_attempts(quiz, uid,unique_id)
         if quiz_attemp_id is None:
-            quiz_attemp_id = set_quiz_attempts(quiz, sql.get_user_id(callback.message.chat.id),unique_id)
+            quiz_attemp_id = set_quiz_attempts(quiz, uid,unique_id)
         redis_cache.write_quiz_attempts(callback.message.chat.id, quiz_attemp_id)
         if flag == 0:
             context_for_category = sql.get_context_category(course_id)
@@ -6224,6 +6271,7 @@ def start_test(callback, cost, course_id):
         time.sleep(1)
         bot.delete_message(callback.message.chat.id, m.message_id)
         redis_cache.write_question_num(callback.message.chat.id, 0)
+        sql.sub_cash(callback.message.chat.id, cost)
         send_question(callback)
     else:
         bot.send_message(chat_id=callback.message.chat.id, text='Не хватает средств для оплаты курса')
@@ -6253,10 +6301,42 @@ def select_genre(id):
     bot.send_message(chat_id=id, text="Жынысы\n\nПол", reply_markup=markup)
 
 
+@bot.callback_query_handler(func=lambda callback: 'cert_' in callback.data)
+def send_certs(callback):
+    u_id = sql.get_user_id(callback.message.chat.id)
+    course_fullname = redis_cache.get_course_name(callback.data)
+    course_id = int(callback.data[5:])
+    certs = sql.select_customcertid_all(course_id)
+    cust_ids_list = []
+    for item in certs:
+        cust_id = sql.select_customcertid_userid_to_delete(u_id, item[0])
+        if len(cust_id) > 0:
+            cust_ids_list.append(item[0])
+    cust_ids_list = tuple(cust_ids_list)
+    if len(cust_ids_list) < 2:
+        if len(cust_ids_list) == 0:
+            return -1
+        data_cert = sql.get_customcert_one(cust_ids_list[0])
+    else:
+        data_cert = sql.get_customcert_list(cust_ids_list)
+
+    for name in data_cert:
+        text = f'{course_fullname}\n{name[1]}'
+        str_telegram = f'{u_id};{name[2]};telgrBilgen'.encode()
+        telegram = hashlib.sha512(str_telegram).hexdigest()
+        bot.send_document(chat_id=callback.message.chat.id, data=f'https://bilgen.academy/mod/customcert/'
+                                                                 f'my_certificates.php?'
+                                                                 f'userid={u_id}'
+                                                                 f'&certificateid={name[2]}'
+                                                                 f'&downloadcert=1'
+                                                                 f'&telegram={telegram}')
+        bot.send_message(chat_id=callback.message.chat.id, text=text)
+
+
 @bot.callback_query_handler(func=lambda callback: callback.data=='Сертификаты')
 def get_certificate_ru(callback):
     u_id = sql.get_user_id(callback.message.chat.id)
-    data = sql.get_certificate(u_id)
+    data = sql.get_certificate(u_id, 1609437600)
 
     cust_ids_list = []
     for cust_id in data:
@@ -6270,18 +6350,33 @@ def get_certificate_ru(callback):
     else:
         data_cert = sql.get_customcert_list(cust_ids_list)
 
-    for name in data_cert:
-        fullname = sql.get_olymp_name(name[0])
-        text = f'{fullname}\n{name[1]}'
-        str_telegram = f'{u_id};{name[2]};telgrBilgen'.encode()
-        telegram = hashlib.sha512(str_telegram).hexdigest()
-        bot.send_document(chat_id=callback.message.chat.id, data=f'https://bilgen.academy/mod/customcert/'
-                                                                 f'my_certificates.php?'
-                                                                 f'userid={u_id}'
-                                                                 f'&certificateid={name[2]}'
-                                                                 f'&downloadcert=1'
-                                                                 f'&telegram={telegram}')
-        bot.send_message(chat_id=callback.message.chat.id, text=text)
+    bot.delete_message(callback.message.chat.id, callback.message.message_id)
+    msg = bot.send_message(callback.message.chat.id, 'Готовится список...')
+    course_ids = set()
+    for course in data_cert:
+        course_ids.add(course[0])
+    markup = InlineKeyboardMarkup()
+    i = 0
+    for course in course_ids:
+        fullname = sql.get_olymp_name(course)
+        redis_cache.write_course_name(course, fullname)
+        markup.add(InlineKeyboardButton(fullname, callback_data=f'cert_{course}'))
+
+    bot.delete_message(callback.message.chat.id, msg.message_id)
+    bot.send_message(chat_id=callback.message.chat.id, text='Выберите', reply_markup=markup)
+
+    # for name in data_cert:
+    #     fullname = sql.get_olymp_name(name[0])
+    #     text = f'{fullname}\n{name[1]}'
+    #     str_telegram = f'{u_id};{name[2]};telgrBilgen'.encode()
+    #     telegram = hashlib.sha512(str_telegram).hexdigest()
+    #     bot.send_document(chat_id=callback.message.chat.id, data=f'https://bilgen.academy/mod/customcert/'
+    #                                                              f'my_certificates.php?'
+    #                                                              f'userid={u_id}'
+    #                                                              f'&certificateid={name[2]}'
+    #                                                              f'&downloadcert=1'
+    #                                                              f'&telegram={telegram}')
+    #     bot.send_message(chat_id=callback.message.chat.id, text=text)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Сертификаты kz')
