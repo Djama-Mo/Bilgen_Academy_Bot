@@ -5856,6 +5856,7 @@ def send_iin(id, iin):
 def send_password(id, password):
     dec_pass = dec_password(password)
     username = sql.get_iin(id)
+    sql.insert_purse(id)
     sql.send_password(dec_pass, username)
 
 
@@ -6059,7 +6060,10 @@ def hash_code_cert(userid, course_id):
     rand_num_2 = random.randint(100, 1000000)
     code = f'{userid}-{course_id}-telegram-{rand_num}-{rand_num_1}-{rand_num_2}'.encode()
     hash_code = hashlib.md5(code).hexdigest()
-    return hash_code
+    hash = ''
+    for _ in range(8):
+        hash += random.choice(hash_code)
+    return hash
 
 
 def send_result(chat_id):

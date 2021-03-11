@@ -285,6 +285,19 @@ class SQL_db:
 			return
 		self.connect.commit()
 
+	def insert_purse(self, chat_id):
+		userid = self.get_iin(chat_id)
+		try:
+			self.cursor.execute(f'''INSERT INTO moodle_additional.purse 
+									(username, current_payment_sum) 
+									VALUES (%s, %s);''',
+								(userid, 0))
+		except Error as e:
+			logger.error("func insert_purse")
+			logger.error(e)
+			return
+		self.connect.commit()
+
 	def get_cash_value(self, chat_id):
 		username = self.get_iin(chat_id)
 		try:

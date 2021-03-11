@@ -295,3 +295,76 @@ Traceback (most recent call last):
     "bytes, string, int or float first." % typename)
 redis.exceptions.DataError: Invalid input of type: 'NoneType'. Convert to a bytes, string, int or float first.
 
+2021-03-10 19:26:54,369 TeleBot - ERROR:ReadTimeout occurred, args=(ReadTimeoutError("HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)",),)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 426, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 421, in _make_request
+    httplib_response = conn.getresponse()
+  File "/usr/lib/python3.6/http/client.py", line 1373, in getresponse
+    response.begin()
+  File "/usr/lib/python3.6/http/client.py", line 311, in begin
+    version, status, reason = self._read_status()
+  File "/usr/lib/python3.6/http/client.py", line 272, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+  File "/usr/lib/python3.6/socket.py", line 586, in readinto
+    return self._sock.recv_into(b)
+  File "/usr/lib/python3.6/ssl.py", line 1012, in recv_into
+    return self.read(nbytes, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 874, in read
+    return self._sslobj.read(len, buffer)
+  File "/usr/lib/python3.6/ssl.py", line 631, in read
+    v = self._sslobj.read(len, buffer)
+socket.timeout: The read operation timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/adapters.py", line 449, in send
+    timeout=timeout
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 727, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/util/retry.py", line 410, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/packages/six.py", line 735, in reraise
+    raise value
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 677, in urlopen
+    chunked=chunked,
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 428, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/urllib3/connectionpool.py", line 336, in _raise_timeout
+    self, url, "Read timed out. (read timeout=%s)" % timeout_value
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 285, in __retrieve_updates
+    updates = self.get_updates(offset=(self.last_update_id + 1), timeout=timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 255, in get_updates
+    json_updates = apihelper.get_updates(self.token, offset, limit, timeout, allowed_updates)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 241, in get_updates
+    return _make_request(token, method_url, params=payload)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 104, in _make_request
+    timeout=(connect_timeout, read_timeout), proxies=proxy)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/sessions.py", line 530, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/sessions.py", line 643, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/requests/adapters.py", line 529, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)
+
+2021-03-11 12:31:13,789 TeleBot - ERROR:TypeError occurred, args=("object of type 'NoneType' has no len()",)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 5870, in profile
+    cash = sql.get_cash_value(id)
+  File "/home/djama/Рабочий стол/Bilgen_bot/MySQL_db.py", line 313, in get_cash_value
+    if len(data) == 0:
+TypeError: object of type 'NoneType' has no len()
+
