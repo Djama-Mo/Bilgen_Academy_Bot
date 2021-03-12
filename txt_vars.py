@@ -48,7 +48,7 @@ tog_kz_path = './condition_kz/teacher/Тогызкумалак.pdf'
 techr_kz_path = './condition_kz/teacher/Білікті педагог.pdf'
 
 
-info_1_str = f'{tanymger_kz}\n\n{tech_teach_kz}\n\n{oys_kz}\n\n{tog_kz}'
+info_1_str = f'{tanymger_kz}\n\n{tech_teach_kz}\n\n{tog_kz}'
 
 info_1_2_str = f'{tech_teach_kz}\n\n{techr_kz}'
 #######################################################################################################################

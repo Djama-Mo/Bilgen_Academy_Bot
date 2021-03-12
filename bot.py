@@ -567,12 +567,7 @@ def mugalim(callback: CallbackQuery):
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
     markup.add(button_1).add(button_2).add(button_3).add(button_menu)
-    bot.send_message(chat_id=callback.message.chat.id, text=info_4_str, reply_markup=markup)
-
-
-@bot.callback_query_handler(func=lambda callback: callback.data == 'Курс 0kz')
-def info_4(callback: CallbackQuery):
-    mugalim(callback)
+    bot.send_message(chat_id=callback.message.chat.id, text=info_1_str, reply_markup=markup)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Курс 0kz')
@@ -2517,7 +2512,7 @@ def bio_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_6_ru')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1848)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_6_ru')
@@ -2618,7 +2613,7 @@ def bio_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_6_kz')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1848)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_6_kz')
@@ -2724,7 +2719,7 @@ def bio_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_5_ru')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1847)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_5_ru')
@@ -2815,7 +2810,7 @@ def hkz_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_5_kz')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1847)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_5_kz')
@@ -5815,7 +5810,7 @@ def send_class_info(callback, lang='ru'):
         send_password(id=callback.message.chat.id, password=password)
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
     if lang == 'kz':
-        menu(callback.message.chat.id, txt='Басты бет', lang=lang)
+        menu(callback.message.chat.id, txt='Басты бет ⬇️', lang=lang)
     else:
         menu(callback.message.chat.id, lang=lang)
     if callback.data == 'Преподаватель' or callback.data == 'Мұғалім':
@@ -6191,6 +6186,9 @@ fuckin_dictionary = {
     1839: 2470,
     1840: 2473,
     1846: 2471,
+    1847: 2524,
+    1848: 2525,
+    1793: 2526
 }
 
 doda_time = [
@@ -6337,8 +6335,7 @@ def send_certs(callback):
         bot.send_message(chat_id=callback.message.chat.id, text=text)
 
 
-@bot.callback_query_handler(func=lambda callback: callback.data=='Сертификаты')
-def get_certificate_ru(callback):
+def get_certificate(callback: CallbackQuery, txt1, txt2, txt3):
     u_id = sql.get_user_id(callback.message.chat.id)
     data = sql.get_certificate(u_id, 1609437600)
 
@@ -6349,13 +6346,14 @@ def get_certificate_ru(callback):
     cust_ids_list = tuple(cust_ids_list)
     if len(cust_ids_list) < 2:
         if len(cust_ids_list) == 0:
+            bot.answer_callback_query(callback.id, text=txt3, show_alert=True)
             return -1
         data_cert = sql.get_customcert_one(cust_ids_list[0])
     else:
         data_cert = sql.get_customcert_list(cust_ids_list)
 
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
-    msg = bot.send_message(callback.message.chat.id, 'Готовится список...')
+    msg = bot.send_message(callback.message.chat.id, txt1)
     course_ids = set()
     for course in data_cert:
         course_ids.add(course[0])
@@ -6367,25 +6365,19 @@ def get_certificate_ru(callback):
         markup.add(InlineKeyboardButton(fullname, callback_data=f'cert_{course}'))
 
     bot.delete_message(callback.message.chat.id, msg.message_id)
-    bot.send_message(chat_id=callback.message.chat.id, text='Выберите', reply_markup=markup)
+    bot.send_message(chat_id=callback.message.chat.id, text=txt2, reply_markup=markup)
 
-    # for name in data_cert:
-    #     fullname = sql.get_olymp_name(name[0])
-    #     text = f'{fullname}\n{name[1]}'
-    #     str_telegram = f'{u_id};{name[2]};telgrBilgen'.encode()
-    #     telegram = hashlib.sha512(str_telegram).hexdigest()
-    #     bot.send_document(chat_id=callback.message.chat.id, data=f'https://bilgen.academy/mod/customcert/'
-    #                                                              f'my_certificates.php?'
-    #                                                              f'userid={u_id}'
-    #                                                              f'&certificateid={name[2]}'
-    #                                                              f'&downloadcert=1'
-    #                                                              f'&telegram={telegram}')
-    #     bot.send_message(chat_id=callback.message.chat.id, text=text)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data=='Сертификаты')
+def get_certificate_ru(callback):
+    get_certificate(callback, 'Список загружается...', 'Выберите', 'У Вас еще нет сертификатов')
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == 'Сертификаты kz')
 def get_certificate_kz(callback):
-    get_certificate_ru(callback)
+    get_certificate(callback, 'Тізім жүктелуде...', 'Таңдаңыз', 'Сізде қолжетімді сертификат жоқ')
+
 
 class User_custom(object):
     def __init__(self, id):
@@ -6421,7 +6413,7 @@ def intro_kz(callback: CallbackQuery):
         sign_up_in_kz(id=uid)
 
 
-def menu(id, txt='На главную', lang='ru'):
+def menu(id, txt='На главную ⬇️', lang='ru'):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
     if lang == 'ru':
         button_menu = KeyboardButton('Меню')
@@ -6590,7 +6582,7 @@ def buttons_tree(message: Message):
                     _lang = user_now[id_]
                 except KeyError:
                     _lang = 'ru'
-                menu(id_, txt='Басты бет\nНа главную', lang=_lang)
+                menu(id_, txt='Басты бет\nНа главную ⬇️', lang=_lang)
         else:
             bot.send_message(chat_id=id_, text='Invalid')
     else:

@@ -63,7 +63,7 @@ def reply_sprint_list_ru(callback, bot):
 
     button_back = InlineKeyboardButton(text='Назад', callback_data=f'Олимпиады 4')
 
-    markup_url.add(button_2).add(button_3).add(button_back)
+    markup_url.add(button_1).add(button_2).add(button_3).add(button_back)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nСписок предметов\n\n', reply_markup=markup_url)
 
@@ -130,7 +130,7 @@ def reply_sprint_list_kz(callback, bot):
 
     button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Олимпиады 4kz')
 
-    markup_url.add(button_2).add(button_3).add(button_back)
+    markup_url.add(button_1).add(button_2).add(button_3).add(button_back)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nСписок предметов\n\n', reply_markup=markup_url)
 

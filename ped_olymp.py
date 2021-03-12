@@ -8,6 +8,11 @@ techr_ru = 'Квалифицированный педагог – олимпиа
 pedagog_kz = 'Білікті педагог'
 pedagog_ru = 'Квалифицированный педагог'
 
+sorry = '<u>Приносим свои извинения, олимпиада пока недоступна для прохождения в Telegram.\n' \
+        'Скоро все исправим.</u>'
+sorry_kz = '<u>Telegram қосымшасы арқылы олимпиада өту уақытша мүмкін емес.\n' \
+           'Келеңсіздіктер үшін кешірім сұраймыз.</u>'
+
 
 def olimp_ru(callback, bot):
     markup_url = InlineKeyboardMarkup()
@@ -28,9 +33,10 @@ def bil_ped_ru(callback, bot):
 
     button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
 
-    markup_url.add(button_1, button_2).add(button_menu)
+    markup_url.add(button_2).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
-    bot.send_message(chat_id=callback.message.chat.id, text=techr_ru, reply_markup=markup_url)
+    bot.send_message(chat_id=callback.message.chat.id, text=f'{sorry}\n\n{techr_ru}', reply_markup=markup_url,
+                     parse_mode='html')
 
 
 def ped_list_ru(callback, bot):
@@ -78,9 +84,10 @@ def bil_ped_kz(callback, bot):
 
     button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
 
-    markup_url.add(button_1, button_2).add(button_menu)
+    markup_url.add(button_2).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
-    bot.send_message(chat_id=callback.message.chat.id, text=techr_kz, reply_markup=markup_url)
+    bot.send_message(chat_id=callback.message.chat.id, text=f'{sorry_kz}\n\n{techr_kz}', reply_markup=markup_url,
+                     parse_mode='html')
 
 
 def ped_list_kz(callback, bot):
