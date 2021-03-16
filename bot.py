@@ -6461,6 +6461,7 @@ def send_welcome(message: Message):
         except ApiTelegramException:
             pass
     bot.delete_message(uid, message.message_id)
+    print(uid, '<<<<<<<<<<<<  Новое сообщение!!!!!')
     button_ru = InlineKeyboardButton('🇷🇺 Русский', callback_data='ru')
     button_kz = InlineKeyboardButton('🇰🇿 Қазақша', callback_data='kz')
     markup.add(button_kz).add(button_ru)
