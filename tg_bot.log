@@ -803,3 +803,20 @@ Traceback (most recent call last):
     raise ReadTimeout(e, request=request)
 requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=30)
 
+2021-03-16 13:09:02,325 TeleBot - ERROR:ApiTelegramException occurred, args=('A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found',)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "/home/djama/Рабочий стол/Bilgen_bot/bot.py", line 6463, in send_welcome
+    bot.delete_message(uid, message.message_id)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 662, in delete_message
+    return apihelper.delete_message(self.token, chat_id, message_id, timeout)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 899, in delete_message
+    return _make_request(token, method_url, params=payload, method='post')
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 108, in _make_request
+    json_result = _check_result(method_name, result)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 135, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found
+
+2021-03-16 13:09:02,345 TeleBot - ERROR:A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found

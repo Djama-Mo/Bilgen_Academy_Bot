@@ -18,7 +18,6 @@ class SQL_db:
 								user='telegramUser',
 								password='!QAZ2wsx'
 								)
-
 		except OperationalError as e:
 			logger.error("can't connect to Mysql")
 			logger.error(e)
