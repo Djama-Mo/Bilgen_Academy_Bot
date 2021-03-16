@@ -14,7 +14,7 @@ class SQL_db:
 		try:
 			# устанавливаем подключение к базе данных
 			self.connect = connect(
-								host='53',
+								host='94.247.135.53',
 								user='telegramUser',
 								password='!QAZ2wsx'
 								)
