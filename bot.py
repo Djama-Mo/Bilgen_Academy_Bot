@@ -7,7 +7,7 @@ from telebot.types import Message
 from telebot.types import ReplyKeyboardMarkup
 from telebot.types import InlineKeyboardMarkup
 from telebot.types import InlineKeyboardButton
-from mysql import connector
+# from mysql import connector
 import redis_cache
 from MySQL_db import *
 import re
@@ -100,12 +100,12 @@ def kmp(string, sub):
     return index
 
 
-def connect_bilgen():
-    db = connector.connect(host='94.247.135.53',
-                           user='telegramUser',
-                           password='!QAZ2wsx')
-
-    return db
+# def connect_bilgen():
+#     db = connector.connect(host='94.247.135.53',
+#                            user='telegramUser',
+#                            password='!QAZ2wsx')
+#
+#     return db
 
 
 def dec_password(password):
