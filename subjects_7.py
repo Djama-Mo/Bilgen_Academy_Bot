@@ -67,7 +67,7 @@ def reply_sprint_list_ru(callback, bot):
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    markup_url.add(button_2, button_3).add(button_4).add(button_9, button_7).add(button_8).add(button_10, button_5).add(button_11).add(button_back)
+    markup_url.add(button_2, button_3).add(button_4).add(button_1).add(button_9, button_7).add(button_8).add(button_10, button_5).add(button_11).add(button_back)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nСписок предметов\n\n', reply_markup=markup_url)
 
 
@@ -146,7 +146,7 @@ def reply_sprint_list_kz(callback, bot):
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    markup_url.add(button_2, button_3).add(button_4).add(button_9, button_7).add(button_8).add(button_10, button_5).add(button_11).add(button_back)
+    markup_url.add(button_2, button_3).add(button_1).add(button_4).add(button_9, button_7).add(button_8).add(button_10, button_5).add(button_11).add(button_back)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nПәндер тізімі\n\n', reply_markup=markup_url)
 
 
