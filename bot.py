@@ -1385,12 +1385,12 @@ def bio_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_11_ru')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1864)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_11_ru')
 def ang_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1853)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_geo_11_ru')
@@ -1496,12 +1496,12 @@ def bio_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_11_kz')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1864)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_11_kz')
 def ang_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1853)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_geo_11_kz')
@@ -1607,12 +1607,12 @@ def hkz_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_bio_10_ru')
 def bio_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1867)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_10_ru')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1858)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_10_ru')
@@ -1622,12 +1622,12 @@ def ang_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_geo_10_ru')
 def geo_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1865)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_10_ru')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1862)
 
 ############################################################################################    SPRINT 10
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_ru}fiz 10')
@@ -1718,12 +1718,12 @@ def hkz_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_bio_10_kz')
 def bio_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1867)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_10_kz')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1858)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_10_kz')
@@ -1733,12 +1733,12 @@ def ang_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_geo_10_kz')
 def geo_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1865)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_10_kz')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1862)
 
 ############################################################################################    SPRINT 10
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_kz}fiz 10')
@@ -1853,7 +1853,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_9_ru')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1861)
 
 ############################################################################################    SPRINT 9
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_ru}fiz 9')
@@ -1964,7 +1964,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_9_kz')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1861)
 
 ############################################################################################    SPRINT 9
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_kz}fiz 9')
@@ -2065,7 +2065,7 @@ def bio_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_8_ru')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1854)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_8_ru')
@@ -2080,7 +2080,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_8_ru')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1860)
 
 ############################################################################################    SPRINT 8
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_ru}fiz 8')
@@ -2176,7 +2176,7 @@ def bio_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_8_kz')
 def kazl_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1854)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_ang_8_kz')
@@ -2191,7 +2191,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_8_kz')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1860)
 
 ############################################################################################    SPRINT 8
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_kz}fiz 8')
@@ -2306,7 +2306,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_7_ru')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1859)
 
 ############################################################################################    SPRINT 7
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_ru}fiz 7')
@@ -2417,7 +2417,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_7_kz')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1859)
 
 ############################################################################################    SPRINT 7
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_kz}fiz 7')
@@ -2507,7 +2507,7 @@ def hkz_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_bio_6_ru')
 def bio_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1866)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_6_ru')
@@ -2527,7 +2527,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_6_ru')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1857)
 
 ############################################################################################    SPRINT 6
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_ru}est 6')
@@ -2608,7 +2608,7 @@ def hkz_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_bio_6_kz')
 def bio_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1866)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_kazl_6_kz')
@@ -2628,7 +2628,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_6_kz')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1857)
 
 ############################################################################################    SPRINT 6
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_kz}est 6')
@@ -2689,7 +2689,7 @@ def sprint_hm_kz_6(callback):
 ############################################################################################    SPRINT 5 RU
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_est_5_ru')
 def fiz_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1827)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_mat_5_ru')
@@ -2734,7 +2734,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_5_ru')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1856)
 
 ############################################################################################    SPRINT 5
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_ru}est 5')
@@ -2825,7 +2825,7 @@ def geo_test(callback):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'spr_hm_5_kz')
 def hm_test(callback):
-    start_test(callback, 350, 503)
+    start_test(callback, 350, 1856)
 
 ############################################################################################    SPRINT 5
 @bot.callback_query_handler(func=lambda callback: callback.data == f'{sprint_kz}est 5')
@@ -6144,7 +6144,10 @@ def check_enrolments(callback, c_id):
                     cust_id = sql.select_customcertid_userid_to_delete(u_id, item[0])
                     if len(cust_id) > 0:
                         break
-                sql.delete_customcert(cust_id[0][0])
+                try:
+                    sql.delete_customcert(cust_id[0][0])
+                except IndexError:
+                    pass
                 sql.delete_quiz_attempt(quiz_id, u_id)
                 sql.delete_enrol_id(e_ids_list[i])
                 delete_flag = 0
@@ -6188,7 +6191,22 @@ fuckin_dictionary = {
     1846: 2471,
     1847: 2524,
     1848: 2525,
-    1793: 2526
+    1793: 2526,
+    1853: 2499,
+    1854: 2527,
+    1855: 2528,
+    1858: 2529,
+    1864: 2530,
+    1856: 2505,
+    1857: 2506,
+    1861: 2509,
+    1860: 2508,
+    1859: 2507,
+    1862: 2510,
+    1863: 2511,
+    1865: 2503,
+    1866: 2468,
+    1867: 2472,
 }
 
 doda_time = [
@@ -6243,7 +6261,10 @@ def start_test(callback, cost, course_id):
             flag = 1
         except KeyError:
             context_id = sql.get_context(instance_id)
-
+        if course_id == 1827:
+            flag = 2
+        elif course_id == 1779:
+            flag = 3
         if quiz[0] in doda_time:
             timeout = 240
         else:
@@ -6258,6 +6279,14 @@ def start_test(callback, cost, course_id):
             context_for_category = sql.get_context_category(course_id)
             category_id = sql.get_category(context_for_category)
             questions = sql.get_questions(category_id)
+        elif flag == 2:
+            questions = [52100, 52112, 52125, 52127, 52128, 52129, 52130, 59029, 59030, 59033, 59035, 59038, 59039,
+                         59040, 59042, 59052, 59060, 59061, 59048, 59077, 59078, 59087, 59094, 59095, 61557, 61568,
+                         61582, 62143, 62144, 62167]
+        elif flag == 3:
+            questions = [625096, 625108, 625114, 625109, 625116, 625105, 626469, 625106, 625100, 625112, 625115, 626466,
+                         625124, 625117, 626467, 625118, 625107, 626465, 625123, 626470, 625113, 625120, 625099, 625094,
+                         625119, 625098, 625097, 625111, 625110, 625122]
         else:
             questions = sql.get_fucking_questions(category_id)
         attempts_id = set_question_attemps(questions, unique_id, callback.message.chat.id, timeout)

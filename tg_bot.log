@@ -820,3 +820,48 @@ Traceback (most recent call last):
 telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found
 
 2021-03-16 13:09:02,345 TeleBot - ERROR:A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: message to delete not found
+2021-03-19 17:32:46,127 __main__ - ERROR:course_id is not configured
+2021-03-19 17:32:46,158 __main__ - ERROR:'NoneType' object is not subscriptable
+2021-03-19 17:46:25,318 TeleBot - ERROR:ZeroDivisionError occurred, args=('integer division or modulo by zero',)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "bot.py", line 2692, in fiz_test
+    start_test(callback, 350, 503)
+  File "bot.py", line 6268, in start_test
+    timeout = quiz[2] // quiz[1]
+ZeroDivisionError: integer division or modulo by zero
+
+2021-03-19 17:48:59,453 TeleBot - ERROR:ApiTelegramException occurred, args=('A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: poll options length must not exceed 100',)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "bot.py", line 2692, in fiz_test
+    start_test(callback, 350, 1827)
+  File "bot.py", line 6303, in start_test
+    send_question(callback)
+  File "bot.py", line 6034, in send_question
+    options=options, correct_option_id=correct_answer_id, type='quiz', reply_markup=markup)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/__init__.py", line 1352, in send_poll
+    disable_notifications, reply_to_message_id, reply_markup, timeout))
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 1222, in send_poll
+    return _make_request(token, method_url, params=payload)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 108, in _make_request
+    json_result = _check_result(method_name, result)
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/apihelper.py", line 135, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: poll options length must not exceed 100
+
+2021-03-19 17:48:59,453 TeleBot - ERROR:A request to the Telegram API was unsuccessful. Error code: 400 Description: Bad Request: poll options length must not exceed 100
+2021-03-19 17:52:02,432 TeleBot - ERROR:IndexError occurred, args=('list index out of range',)
+Traceback (most recent call last):
+  File "/home/djama/Рабочий стол/Bilgen_bot/venv/lib/python3.6/site-packages/telebot/util.py", line 69, in run
+    task(*args, **kwargs)
+  File "bot.py", line 2692, in fiz_test
+    start_test(callback, 350, 1827)
+  File "bot.py", line 6243, in start_test
+    if check_enrolments(callback, course_id) == 0 or check_quiz_attempt(quiz[0], uid) == 0:
+  File "bot.py", line 6147, in check_enrolments
+    sql.delete_customcert(cust_id[0][0])
+IndexError: list index out of range
+
