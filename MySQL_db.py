@@ -64,7 +64,10 @@ class SQL_db:
 			logger.error(e)
 			return
 		data = self.cursor.fetchall()
-		username = data[0][0]
+		try:
+			username = data[0][0]
+		except IndexError:
+			return
 		return username
 
 	def send_the_region(self, callback, region_id=18):

@@ -5571,6 +5571,9 @@ def decorator(func, arg1, arg2=None, arg3=None):
 sql = SQL_db()
 def check_password(id, password):
     username = sql.get_iin(id)
+    if username is None:
+        bot.send_message(id, text='Incorrect')
+        return
     salt = 'te1grBi1genPa$$4eck'
     token_string = f'{username};{password};{salt}'.encode()
     token = hashlib.sha512(token_string).hexdigest()
@@ -6244,7 +6247,7 @@ def start_test(callback, cost, course_id):
     uid = sql.get_user_id(callback.message.chat.id)
     quiz = sql.get_quiz(course_id)
     if int(cash) >= cost:
-        if check_enrolments(callback, course_id) == 0 or check_quiz_attempt(quiz[0], uid) == 0:
+        if check_enrolments(callback, course_id) == 0:
             menu(callback.message.chat.id)
             return
         try:
@@ -6253,7 +6256,10 @@ def start_test(callback, cost, course_id):
             pass
         enrol_id = sql.get_enrol(course_id)
         sql.set_user_enrolments(callback.message.chat.id, enrol_id)
-
+        if check_quiz_attempt(quiz[0], uid) == 0:
+            if check_enrolments(callback, course_id) == 0:
+                menu(callback.message.chat.id)
+                return
         instance_id = sql.get_instance(course_id)
         flag = 0
         try:
@@ -6604,6 +6610,8 @@ def buttons_tree(message: Message):
         if iin_flag == 1:
             response_text = check_password(id=id_, password=message.text) # [data] => error
             error_mes = '[data] => error'
+            if response_text is None:
+                return
             if kmp(response_text, error_mes) != -1:
                 bot.send_message(chat_id=id_, text='Дұрыс емес кілт сөз\n\nНеправильный пароль\n\n/start')
             else:
