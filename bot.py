@@ -6519,7 +6519,6 @@ def buttons_tree(message: Message):
     global iin_flag
     global name_flag
     id_ = message.chat.id
-    print(message)
     # buttons = {
     #     '🇰🇿 Қазақша': status_kz(id=id_),
     #     '🇷🇺 Русский': status_ru(id=id_),
