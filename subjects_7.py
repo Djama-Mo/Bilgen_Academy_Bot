@@ -23,10 +23,10 @@ bilik_kz = 'Bala/Bilik Time – Бастауыш пен жоғарғы сыны�
 def reply_list_ru(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text=f'{sprint_ru}', callback_data=f'{sprint_ru} 7')
+    button_1 = InlineKeyboardButton(text=f'🖥 {sprint_ru}', callback_data=f'{sprint_ru} 7')
     button_2 = InlineKeyboardButton(text=f'{bala_time_ru}', callback_data=f'{bala_time_ru} 7')
 
-    button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
+    button_menu = InlineKeyboardButton(text=f'🎛 Главное меню', callback_data='ru')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
@@ -37,12 +37,12 @@ def reply_list_ru(callback, bot):
 def reply_sprint_ru(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text='Список предметов', callback_data=f'Список {sprint_ru} 7')
-    button_2 = InlineKeyboardButton(text='Положение', callback_data=f'Положение {sprint_ru}')
+    button_1 = InlineKeyboardButton(text='📝 Список предметов', callback_data=f'Список {sprint_ru} 7')
+    button_2 = InlineKeyboardButton(text='📃 Положение', callback_data=f'Положение {sprint_ru}')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
+    button_menu = InlineKeyboardButton(text=f'🎛 Главное меню', callback_data='ru')
 
     markup_url.add(button_1, button_2).add(button_menu)
     bot.send_message(chat_id=callback.message.chat.id, text=bilgen_sprint_txt_ru, reply_markup=markup_url)
@@ -63,7 +63,7 @@ def reply_sprint_list_ru(callback, bot):
     button_10 = InlineKeyboardButton(text='География', callback_data=f'Гео {sprint_ru} 7')
     button_11 = InlineKeyboardButton(text='Английский язык', callback_data=f'Анг {sprint_ru} 7')
 
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Олимпиады 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Олимпиады 7')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
@@ -74,12 +74,12 @@ def reply_sprint_list_ru(callback, bot):
 def reply_bilik_time_ru(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text='Направления', callback_data=f'Нап {bala_time_ru} 7')
-    button_2 = InlineKeyboardButton(text='Положение', callback_data=f'Положение {bala_time_ru}')
+    button_1 = InlineKeyboardButton(text='📝 Направления', callback_data=f'Нап {bala_time_ru} 7')
+    button_2 = InlineKeyboardButton(text='📃 Положение', callback_data=f'Положение {bala_time_ru}')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
+    button_menu = InlineKeyboardButton(text=f'🎛 Главное меню', callback_data='ru')
 
     markup_url.add(button_1, button_2).add(button_menu)
     bot.send_message(chat_id=callback.message.chat.id, text=bilik_ru, reply_markup=markup_url)
@@ -93,7 +93,7 @@ def reply_bilik_time_list_ru(callback, bot):
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Олимпиады 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Олимпиады 7')
 
     markup_url.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=callback.message.chat.id, text='Выберите направление', reply_markup=markup_url)
@@ -102,12 +102,12 @@ def reply_bilik_time_list_ru(callback, bot):
 def reply_list_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text=f'{sprint_kz}', callback_data=f'{sprint_kz} 7')
+    button_1 = InlineKeyboardButton(text=f'🖥 {sprint_kz}', callback_data=f'{sprint_kz} 7')
     button_2 = InlineKeyboardButton(text=f'{bala_time_ru}', callback_data=f'{bala_time_ru} 7')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
+    button_menu = InlineKeyboardButton(text=f'🎛 Басты бет', callback_data='kz')
 
     markup_url.add(button_1).add(button_menu)
     bot.send_message(chat_id=callback.message.chat.id, text='Таңдаңыз', reply_markup=markup_url)
@@ -116,10 +116,10 @@ def reply_list_kz(callback, bot):
 def reply_sprint_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text='Пәндер тізімі', callback_data=f'Список {sprint_kz} 7')
-    button_2 = InlineKeyboardButton(text='Ереже', callback_data=f'Положение {sprint_kz}')
+    button_1 = InlineKeyboardButton(text='📝 Пәндер тізімі', callback_data=f'Список {sprint_kz} 7')
+    button_2 = InlineKeyboardButton(text='📃 Ереже', callback_data=f'Положение {sprint_kz}')
 
-    button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
+    button_menu = InlineKeyboardButton(text=f'🎛 Басты бет', callback_data='kz')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
@@ -142,7 +142,7 @@ def reply_sprint_list_kz(callback, bot):
     button_10 = InlineKeyboardButton(text='География', callback_data=f'Гео {sprint_kz} 7')
     button_11 = InlineKeyboardButton(text='Ағылшын тілі', callback_data=f'Анг {sprint_kz} 7')
 
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Олимпиады 7kz')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Олимпиады 7kz')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
@@ -153,12 +153,12 @@ def reply_sprint_list_kz(callback, bot):
 def reply_bilik_time_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text='Бағыттары', callback_data=f'Нап {bala_time_ru} 7')
-    button_2 = InlineKeyboardButton(text='Ереже', callback_data=f'Положение {bala_time_kz}')
+    button_1 = InlineKeyboardButton(text='📝 Бағыттары', callback_data=f'Нап {bala_time_ru} 7')
+    button_2 = InlineKeyboardButton(text='📃 Ереже', callback_data=f'Положение {bala_time_kz}')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
+    button_menu = InlineKeyboardButton(text=f'🎛 Басты бет', callback_data='kz')
 
     markup_url.add(button_1, button_2).add(button_menu)
     bot.send_message(chat_id=callback.message.chat.id, text=bilik_kz, reply_markup=markup_url)
@@ -172,7 +172,7 @@ def reply_bilik_time_list_kz(callback, bot):
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
 
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Олимпиады 7kz')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Олимпиады 7kz')
 
     markup_url.add(button_1).add(button_2).add(button_back)
     bot.send_message(chat_id=callback.message.chat.id, text='Бағыттары таңдаңыз', reply_markup=markup_url)
@@ -181,8 +181,8 @@ def reply_bilik_time_list_kz(callback, bot):
 def informatika(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}informatika 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}informatika 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -194,8 +194,8 @@ def informatika(callback, bot):
 def matematika(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}mat 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}mat 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -207,8 +207,8 @@ def matematika(callback, bot):
 def kaz_yaz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}kaz 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}kaz 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -220,8 +220,8 @@ def kaz_yaz(callback, bot):
 def kaz_lit(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}kazl 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}kazl 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -233,8 +233,8 @@ def kaz_lit(callback, bot):
 def bio(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}bio 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}bio 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -246,8 +246,8 @@ def bio(callback, bot):
 def xim(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}xim 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}xim 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -259,8 +259,8 @@ def xim(callback, bot):
 def fiz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}fiz 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}fiz 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -272,8 +272,8 @@ def fiz(callback, bot):
 def hkz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}hkz 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}hkz 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -285,8 +285,8 @@ def hkz(callback, bot):
 def hm(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}hm 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}hm 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -298,8 +298,8 @@ def hm(callback, bot):
 def geo(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}geo 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}geo 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -311,8 +311,8 @@ def geo(callback, bot):
 def ang(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_ru}ang 7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Список {sprint_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{sprint_ru}ang 7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Список {sprint_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -324,8 +324,8 @@ def ang(callback, bot):
 def mat_bil(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{mat}7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Нап {bala_time_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{mat}7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Нап {bala_time_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -337,8 +337,8 @@ def mat_bil(callback, bot):
 def gum_bil(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{gum}7')
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Нап {bala_time_ru} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Участвовать', callback_data=f'{gum}7')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Нап {bala_time_ru} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -350,8 +350,8 @@ def gum_bil(callback, bot):
 def informatika_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}informatika 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}informatika 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -363,8 +363,8 @@ def informatika_kz(callback, bot):
 def matematika_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}mat 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}mat 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -376,8 +376,8 @@ def matematika_kz(callback, bot):
 def kaz_yaz_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}kaz 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}kaz 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -389,8 +389,8 @@ def kaz_yaz_kz(callback, bot):
 def kaz_lit_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}kazl 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}kazl 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -402,8 +402,8 @@ def kaz_lit_kz(callback, bot):
 def bio_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}bio 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}bio 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -415,8 +415,8 @@ def bio_kz(callback, bot):
 def xim_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}xim 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}xim 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -428,8 +428,8 @@ def xim_kz(callback, bot):
 def fiz_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}fiz 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}fiz 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -441,8 +441,8 @@ def fiz_kz(callback, bot):
 def hkz_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}hkz 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}hkz 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -454,8 +454,8 @@ def hkz_kz(callback, bot):
 def hm_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}hm 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}hm 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -467,8 +467,8 @@ def hm_kz(callback, bot):
 def geo_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}geo 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}geo 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -480,8 +480,8 @@ def geo_kz(callback, bot):
 def ang_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{sprint_kz}ang 7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Список {sprint_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{sprint_kz}ang 7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Список {sprint_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -493,8 +493,8 @@ def ang_kz(callback, bot):
 def mat_bil_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{mat_kz}7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Нап {bala_time_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{mat_kz}7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Нап {bala_time_kz} 7')
 
     markup_url.add(button).add(button_back)
 
@@ -506,8 +506,8 @@ def mat_bil_kz(callback, bot):
 def gum_bil_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button = InlineKeyboardButton(text='Учавствовать', callback_data=f'{gum_kz}7')
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Нап {bala_time_kz} 7')
+    button = InlineKeyboardButton(text='🧑🏻‍🎓 Қатысу', callback_data=f'{gum_kz}7')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Нап {bala_time_kz} 7')
 
     markup_url.add(button).add(button_back)
 

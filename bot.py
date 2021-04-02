@@ -534,7 +534,7 @@ def info_4(callback: CallbackQuery):
     button_2 = InlineKeyboardButton('Tanymger  Tech', callback_data='C_TT_ru')
     button_3 = InlineKeyboardButton('Toғызқұмалақ', callback_data='C_9qq_ru')
 
-    button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
+    button_menu = InlineKeyboardButton(text=f'🎛 Главное меню', callback_data='ru')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
     markup.add(button_1).add(button_2).add(button_3).add(button_menu)
@@ -563,7 +563,7 @@ def mugalim(callback: CallbackQuery):
     button_2 = InlineKeyboardButton('Tanymger Tech', callback_data='C_TT_kz')
     button_3 = InlineKeyboardButton('Тоғызқұмалақ', callback_data='C_9qq_kz')
 
-    button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
+    button_menu = InlineKeyboardButton(text=f'🎛 Басты бет', callback_data='kz')
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
     markup.add(button_1).add(button_2).add(button_3).add(button_menu)
@@ -824,7 +824,7 @@ def tanymger_expert_chat_kz(callback):
 def reply_video(callback):
     try:
         markup = InlineKeyboardMarkup()
-        button_home = InlineKeyboardButton(text='Басты бет', callback_data='kz')
+        button_home = InlineKeyboardButton(text='🎛 Басты бет', callback_data='kz')
         markup.add(button_home)
 
         bot.send_video(chat_id=callback.message.chat.id, data=open('./Pay_method/KASPI.mp4', 'rb'))
@@ -5839,7 +5839,7 @@ def send_class_info(callback, lang='ru'):
         send_password(id=callback.message.chat.id, password=password)
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
     if lang == 'kz':
-        menu(callback.message.chat.id, txt='Басты бет ⬇️', lang=lang)
+        menu(callback.message.chat.id, txt='🎛 Басты бет ⬇️', lang=lang)
     else:
         menu(callback.message.chat.id, lang=lang)
     if callback.data == 'Преподаватель' or callback.data == 'Мұғалім':
@@ -5899,9 +5899,9 @@ def profile(callback):
         text = f'Логин: {iin}\nКласс: {class_var}\nБаланс: {cash} ₸'
 
     markup = InlineKeyboardMarkup()
-    button_class = InlineKeyboardButton('Сменить класс', callback_data='Сменить класс')
+    button_class = InlineKeyboardButton('🔄 Сменить класс', callback_data='Сменить класс')
 
-    button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
+    button_menu = InlineKeyboardButton(text=f'🎛 Главное меню', callback_data='ru')
 
     markup.add(button_class).add(button_menu)
     try:
@@ -5927,9 +5927,9 @@ def profile(callback):
         text = f'Логин: {iin}\nСынып: {class_var}\nБаланс: {cash} ₸'
 
     markup = InlineKeyboardMarkup()
-    button_class = InlineKeyboardButton('Сынып ауыстыру', callback_data='Сменить класс kz')
+    button_class = InlineKeyboardButton('🔄 Сынып ауыстыру', callback_data='Сменить класс kz')
 
-    button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
+    button_menu = InlineKeyboardButton(text=f'🎛 Басты бет', callback_data='kz')
 
     markup.add(button_class).add(button_menu)
 
@@ -6497,7 +6497,7 @@ def intro_kz(callback: CallbackQuery):
         sign_up_in_kz(id=uid)
 
 
-def menu(id, txt='На главную ⬇️', lang='ru'):
+def menu(id, txt='🎛 На главную ⬇️', lang='ru'):
     markup = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=False)
     if lang == 'ru':
         button_menu = KeyboardButton('Меню')
@@ -6510,17 +6510,17 @@ def menu(id, txt='На главную ⬇️', lang='ru'):
 def profile_buttons(u_info, id, lang='ru'):
     markups = InlineKeyboardMarkup()
     if lang == 'kz':
-        button_courses = InlineKeyboardButton('Курстар', callback_data=f'Курс {u_info[0]}kz')
-        button_olympiads = InlineKeyboardButton('Олимпиадалар', callback_data=f'Олимпиады {u_info[0]}kz')
-        button_balance = InlineKeyboardButton('Төлем жүйесі', callback_data='Пополнение kz')
-        button_achievements = InlineKeyboardButton('Нәтижелерім', callback_data='Сертификаты kz')
-        button_profile = InlineKeyboardButton('Жеке кабинет', callback_data=f'Профиль kz')
+        button_courses = InlineKeyboardButton('🎓 Курстар', callback_data=f'Курс {u_info[0]}kz')
+        button_olympiads = InlineKeyboardButton('📚 Олимпиадалар', callback_data=f'Олимпиады {u_info[0]}kz')
+        button_balance = InlineKeyboardButton('💲 Төлем жүйесі', callback_data='Пополнение kz')
+        button_achievements = InlineKeyboardButton('🏆 Нәтижелерім', callback_data='Сертификаты kz')
+        button_profile = InlineKeyboardButton('🧑🏻‍💻 Жеке кабинет', callback_data=f'Профиль kz')
     else:
-        button_courses = InlineKeyboardButton('Курсы', callback_data=f'Курс {u_info[0]}')
-        button_olympiads = InlineKeyboardButton('Олимпиады', callback_data=f'Олимпиады {u_info[0]}')
-        button_balance = InlineKeyboardButton('Способ оплаты', url='https://bilgen.academy/api/gateway/')
-        button_achievements = InlineKeyboardButton('Мои сертификаты', callback_data='Сертификаты')
-        button_profile = InlineKeyboardButton('Профиль', callback_data=f'Профиль')
+        button_courses = InlineKeyboardButton('🎓 Курсы', callback_data=f'Курс {u_info[0]}')
+        button_olympiads = InlineKeyboardButton('📚 Олимпиады', callback_data=f'Олимпиады {u_info[0]}')
+        button_balance = InlineKeyboardButton('💲 Способ оплаты', url='https://bilgen.academy/api/gateway/')
+        button_achievements = InlineKeyboardButton('🏆 Мои сертификаты', callback_data='Сертификаты')
+        button_profile = InlineKeyboardButton('🧑🏻‍💻 Профиль', callback_data=f'Профиль')
 
     if int(u_info[0]) == 0:
         markups.add(button_courses, button_olympiads)
@@ -6530,9 +6530,9 @@ def profile_buttons(u_info, id, lang='ru'):
     markups.add(button_achievements, button_profile)
     markups.add(button_balance)
     if lang == 'kz':
-        bot.send_message(chat_id=id, text='Басты бет', reply_markup=markups)
+        bot.send_message(chat_id=id, text='🎛 Басты бет', reply_markup=markups)
     else:
-        bot.send_message(chat_id=id, text='Главное меню', reply_markup=markups)
+        bot.send_message(chat_id=id, text='🎛 Главное меню', reply_markup=markups)
 
 
 @bot.message_handler(commands=['start'])
@@ -6668,7 +6668,7 @@ def buttons_tree(message: Message):
                     _lang = user_now[id_]
                 except KeyError:
                     _lang = 'ru'
-                menu(id_, txt='Басты бет\nНа главную ⬇️', lang=_lang)
+                menu(id_, txt='🎛 Басты бет\n🎛 На главную ⬇️', lang=_lang)
         else:
             bot.send_message(chat_id=id_, text='Invalid')
     else:

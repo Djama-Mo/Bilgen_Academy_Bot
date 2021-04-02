@@ -17,9 +17,9 @@ sorry_kz = '<u>Telegram қосымшасы арқылы олимпиада өт�
 def olimp_ru(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text=f'{pedagog_ru}', callback_data=f'{pedagog_ru}')
+    button_1 = InlineKeyboardButton(text=f'🧑🏻‍🏫 {pedagog_ru}', callback_data=f'{pedagog_ru}')
 
-    button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
+    button_menu = InlineKeyboardButton(text=f'🎛 Главное меню', callback_data='ru')
 
     markup_url.add(button_1).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
@@ -28,10 +28,10 @@ def olimp_ru(callback, bot):
 def bil_ped_ru(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text='Список предметов', callback_data=f'Спис {pedagog_ru}')
-    button_2 = InlineKeyboardButton(text='Положение', callback_data=f'Пол{pedagog_ru}')
+    button_1 = InlineKeyboardButton(text='📝 Список предметов', callback_data=f'Спис {pedagog_ru}')
+    button_2 = InlineKeyboardButton(text='📃 Положение', callback_data=f'Пол{pedagog_ru}')
 
-    button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
+    button_menu = InlineKeyboardButton(text=f'🎛 Главное меню', callback_data='ru')
 
     markup_url.add(button_1, button_2).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
@@ -58,7 +58,7 @@ def ped_list_ru(callback, bot):
     button_14 = InlineKeyboardButton(text='Каз. язык и литература', callback_data=f'Каз {pedagog_ru}')
     button_15 = InlineKeyboardButton(text='Педагогика-Психология', callback_data=f'Пед {pedagog_ru}')
 
-    button_back = InlineKeyboardButton(text='Назад', callback_data=f'Олимпиады 0')
+    button_back = InlineKeyboardButton(text='🔙 Назад', callback_data=f'Олимпиады 0')
 
     markup_url.add(button_1).add(button_2).add(button_3, button_4, button_6).add(button_5, button_7).\
         add(button_8, button_9).add(button_10, button_11, button_12).add(button_13, button_14).\
@@ -71,8 +71,8 @@ def ped_list_ru(callback, bot):
 def olimp_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text=f'{pedagog_kz}', callback_data=f'{pedagog_kz}')
-    button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
+    button_1 = InlineKeyboardButton(text=f'🧑🏻‍🏫 {pedagog_kz}', callback_data=f'{pedagog_kz}')
+    button_menu = InlineKeyboardButton(text=f'🎛 Басты бет', callback_data='kz')
 
     markup_url.add(button_1).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
@@ -81,10 +81,10 @@ def olimp_kz(callback, bot):
 def bil_ped_kz(callback, bot):
     markup_url = InlineKeyboardMarkup()
 
-    button_1 = InlineKeyboardButton(text='Пәндер тізімі', callback_data=f'Спис {pedagog_kz}')
-    button_2 = InlineKeyboardButton(text='Ереже', callback_data=f'Пол{pedagog_kz}')
+    button_1 = InlineKeyboardButton(text='📝 Пәндер тізімі', callback_data=f'Спис {pedagog_kz}')
+    button_2 = InlineKeyboardButton(text='📃 Ереже', callback_data=f'Пол{pedagog_kz}')
 
-    button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
+    button_menu = InlineKeyboardButton(text=f'🎛 Басты бет', callback_data='kz')
 
     markup_url.add(button_1, button_2).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
@@ -111,7 +111,7 @@ def ped_list_kz(callback, bot):
     button_14 = InlineKeyboardButton(text='Қазақ тілі және әдебиеті', callback_data=f'Каз {pedagog_kz}')
     button_15 = InlineKeyboardButton(text='Педагогика-Психология', callback_data=f'Пед {pedagog_kz}')
 
-    button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Олимпиады 0kz')
+    button_back = InlineKeyboardButton(text='🔙 Кері оралу', callback_data=f'Олимпиады 0kz')
 
     markup_url.add(button_1).add(button_2).add(button_3, button_4).add(button_5, button_7).\
         add(button_8, button_9).add(button_10, button_11, button_12).add(button_14).add(button_6, button_13).\
