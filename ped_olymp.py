@@ -33,9 +33,9 @@ def bil_ped_ru(callback, bot):
 
     button_menu = InlineKeyboardButton(text=f'Главное меню', callback_data='ru')
 
-    markup_url.add(button_2).add(button_menu)
+    markup_url.add(button_1, button_2).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
-    bot.send_message(chat_id=callback.message.chat.id, text=f'{sorry}\n\n{techr_ru}', reply_markup=markup_url,
+    bot.send_message(chat_id=callback.message.chat.id, text=f'{techr_ru}', reply_markup=markup_url,
                      parse_mode='html')
 
 
@@ -54,13 +54,15 @@ def ped_list_ru(callback, bot):
     button_10 = InlineKeyboardButton(text='История', callback_data=f'Ист {pedagog_ru}')
     button_11 = InlineKeyboardButton(text='Физика', callback_data=f'Физ {pedagog_ru}')
     button_12 = InlineKeyboardButton(text='Химия', callback_data=f'Хим {pedagog_ru}')
-    button_13 = InlineKeyboardButton(text='Логопед', callback_data=f'Лог {pedagog_ru}')
+    button_13 = InlineKeyboardButton(text='Физкультура', callback_data=f'Физра {pedagog_ru}')
     button_14 = InlineKeyboardButton(text='Каз. язык и литература', callback_data=f'Каз {pedagog_ru}')
+    button_15 = InlineKeyboardButton(text='Педагогика-Психология', callback_data=f'Пед {pedagog_ru}')
 
     button_back = InlineKeyboardButton(text='Назад', callback_data=f'Олимпиады 0')
 
     markup_url.add(button_1).add(button_2).add(button_3, button_4, button_6).add(button_5, button_7).\
-        add(button_8, button_9).add(button_10, button_11, button_12).add(button_13, button_14).add(button_back)
+        add(button_8, button_9).add(button_10, button_11, button_12).add(button_13, button_14).\
+        add(button_15).add(button_back)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nСписок предметов\n\n', reply_markup=markup_url)
 
@@ -84,9 +86,9 @@ def bil_ped_kz(callback, bot):
 
     button_menu = InlineKeyboardButton(text=f'Басты бет', callback_data='kz')
 
-    markup_url.add(button_2).add(button_menu)
+    markup_url.add(button_1, button_2).add(button_menu)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
-    bot.send_message(chat_id=callback.message.chat.id, text=f'{sorry_kz}\n\n{techr_kz}', reply_markup=markup_url,
+    bot.send_message(chat_id=callback.message.chat.id, text=f'{techr_kz}', reply_markup=markup_url,
                      parse_mode='html')
 
 
@@ -105,13 +107,15 @@ def ped_list_kz(callback, bot):
     button_10 = InlineKeyboardButton(text='Тарих', callback_data=f'Ист {pedagog_kz}')
     button_11 = InlineKeyboardButton(text='Физика', callback_data=f'Физ {pedagog_kz}')
     button_12 = InlineKeyboardButton(text='Химия', callback_data=f'Хим {pedagog_kz}')
-    button_13 = InlineKeyboardButton(text='Логопед', callback_data=f'Лог {pedagog_kz}')
+    button_13 = InlineKeyboardButton(text='Дене шынықтыру', callback_data=f'Физра {pedagog_kz}')
     button_14 = InlineKeyboardButton(text='Қазақ тілі және әдебиеті', callback_data=f'Каз {pedagog_kz}')
+    button_15 = InlineKeyboardButton(text='Педагогика-Психология', callback_data=f'Пед {pedagog_kz}')
 
     button_back = InlineKeyboardButton(text='Кері оралу', callback_data=f'Олимпиады 0kz')
 
     markup_url.add(button_1).add(button_2).add(button_3, button_4).add(button_5, button_7).\
         add(button_8, button_9).add(button_10, button_11, button_12).add(button_14).add(button_6, button_13).\
+        add(button_15).\
         add(button_back)
     bot.delete_message(callback.message.chat.id, callback.message.message_id)
     bot.send_message(chat_id=callback.message.chat.id, text='\n\nПәндер тізімі\n\n', reply_markup=markup_url)

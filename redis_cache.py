@@ -9,7 +9,7 @@ url = urlparse(REDIS_URL)
 rediska = redis.Redis(host=url.hostname, port=url.port, username=url.username, password=url.password, ssl=True,
                       ssl_cert_reqs=None)
 
-
+rediska.flushall()
 def get_questions(chat_id):
     questions = rediska.get(chat_id)
     if questions is None:

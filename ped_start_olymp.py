@@ -43,7 +43,7 @@ def subj_info(callback, bot, subject):
     markup_url.add(button).add(button_back)
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
-    bot.send_message(chat_id=callback.message.chat.id, text=text(subject, 40, 60, 500),
+    bot.send_message(chat_id=callback.message.chat.id, text=text(subject, 10, 30, 500),
                      reply_markup=markup_url, parse_mode='html')
 
 
@@ -56,7 +56,7 @@ def subj_info_kz(callback, bot, subject):
     markup_url.add(button).add(button_back)
 
     bot.delete_message(chat_id=callback.message.chat.id, message_id=callback.message.message_id)
-    bot.send_message(chat_id=callback.message.chat.id, text=text_kz(subject, 40, 60, 500),
+    bot.send_message(chat_id=callback.message.chat.id, text=text_kz(subject, 10, 30, 500),
                      reply_markup=markup_url, parse_mode='html')
 
 

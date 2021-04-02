@@ -5153,7 +5153,7 @@ def t_ang_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tАнглийский язык_ru')
 def ang_test(callback):
-    start_test(callback, 500, 1679)
+    start_test(callback, 500, 1868)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Нач {pedagog_ru}')
@@ -5166,7 +5166,7 @@ def t_nach_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tНачальные классы_ru')
 def nach_test(callback):
-    start_test(callback, 500, 1678)
+    start_test(callback, 500, 1869)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Био {pedagog_ru}')
@@ -5179,7 +5179,7 @@ def t_bio_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tБиология_ru')
 def bio_test(callback):
-    start_test(callback, 500, 1683)
+    start_test(callback, 500, 1870)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Гео {pedagog_ru}')
@@ -5192,7 +5192,7 @@ def t_geo_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tГеография_ru')
 def geo_test(callback):
-    start_test(callback, 500, 1684)
+    start_test(callback, 500, 1871)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Инф {pedagog_ru}')
@@ -5205,7 +5205,7 @@ def t_inf_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tИнформатика_ru')
 def inf_test(callback):
-    start_test(callback, 500, 1690)
+    start_test(callback, 500, 1872)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Труд {pedagog_ru}')
@@ -5218,7 +5218,7 @@ def t_trud_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tТруд_ru')
 def trud_test(callback):
-    start_test(callback, 500, 1692)
+    start_test(callback, 500, 1873)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Мат {pedagog_ru}')
@@ -5231,7 +5231,7 @@ def t_mat_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tМатематика_ru')
 def mat_test(callback):
-    start_test(callback, 500, 1680)
+    start_test(callback, 500, 1875)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Рус {pedagog_ru}')
@@ -5244,7 +5244,7 @@ def t_rus_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tРусский язык_ru')
 def rus_test(callback):
-    start_test(callback, 500, 1691)
+    start_test(callback, 500, 1876)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Сам {pedagog_ru}')
@@ -5257,7 +5257,7 @@ def t_sam_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tСамопознание_ru')
 def sam_test(callback):
-    start_test(callback, 500, 1689)
+    start_test(callback, 500, 1883)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Ист {pedagog_ru}')
@@ -5270,7 +5270,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tИстория_ru')
 def sam_test(callback):
-    start_test(callback, 500, 1686)
+    start_test(callback, 500, 1878)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Физ {pedagog_ru}')
@@ -5283,7 +5283,7 @@ def t_fiz_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tФизика_ru')
 def fiz_test(callback):
-    start_test(callback, 500, 1681)
+    start_test(callback, 500, 1879)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Хим {pedagog_ru}')
@@ -5296,20 +5296,20 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tХимия_ru')
 def fiz_test(callback):
-    start_test(callback, 500, 1682)
+    start_test(callback, 500, 1880)
 
 
-@bot.callback_query_handler(func=lambda callback: callback.data == f'Лог {pedagog_ru}')
+@bot.callback_query_handler(func=lambda callback: callback.data == f'Физра {pedagog_ru}')
 def t_log(callback: CallbackQuery):
-    ped_start_olymp.subj_info(callback, bot, "Логопед")
+    ped_start_olymp.subj_info(callback, bot, "Физкультура")
 
-@bot.callback_query_handler(func=lambda callback: callback.data == "pЛогопед_ru")
+@bot.callback_query_handler(func=lambda callback: callback.data == "pФизкультура_ru")
 def t_log_s(callback: CallbackQuery):
-    ped_start_olymp.test_req(callback, bot, "Логопед")
+    ped_start_olymp.test_req(callback, bot, "Физкультура")
 
-@bot.callback_query_handler(func=lambda callback: callback.data == f'tЛогопед_ru')
+@bot.callback_query_handler(func=lambda callback: callback.data == f'tФизкультура_ru')
 def log_test(callback):
-    start_test(callback, 500, 1692)
+    start_test(callback, 500, 1881)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Каз {pedagog_ru}')
@@ -5322,7 +5322,20 @@ def t_kaz_s(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tКаз. язык и литература_ru')
 def kaz_test(callback):
-    start_test(callback, 500, 1685)
+    start_test(callback, 500, 1874)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'Пед {pedagog_ru}')
+def t_kaz(callback: CallbackQuery):
+    ped_start_olymp.subj_info(callback, bot, "Педагогика-Психология")
+
+@bot.callback_query_handler(func=lambda callback: callback.data == "pПедагогика-Психология_ru")
+def t_kaz_s(callback: CallbackQuery):
+    ped_start_olymp.test_req(callback, bot, "Педагогика-Психология")
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'tПедагогика-Психология_ru')
+def kaz_test(callback):
+    start_test(callback, 500, 1882)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Анг {pedagog_kz}')
@@ -5335,7 +5348,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tАғылшын тілі_kz')
 def ang_test(callback):
-    start_test(callback, 500, 1679)
+    start_test(callback, 500, 1868)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Нач {pedagog_kz}')
@@ -5348,7 +5361,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tБастауыш сынып_kz')
 def nach_test(callback):
-    start_test(callback, 500, 1678)
+    start_test(callback, 500, 1869)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Био {pedagog_kz}')
@@ -5361,7 +5374,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tБиология_kz')
 def bio_test(callback):
-    start_test(callback, 500, 1683)
+    start_test(callback, 500, 1870)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Гео {pedagog_kz}')
@@ -5374,7 +5387,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tГеография_kz')
 def geo_test(callback):
-    start_test(callback, 500, 1684)
+    start_test(callback, 500, 1871)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Инф {pedagog_kz}')
@@ -5387,7 +5400,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tИнформатика_kz')
 def inf_test(callback):
-    start_test(callback, 500, 1690)
+    start_test(callback, 500, 1872)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Труд {pedagog_kz}')
@@ -5400,7 +5413,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tЕңбек_kz')
 def trud_test(callback):
-    start_test(callback, 500, 1692)
+    start_test(callback, 500, 1873)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Мат {pedagog_kz}')
@@ -5413,7 +5426,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tМатематика_kz')
 def mat_test(callback):
-    start_test(callback, 500, 1680)
+    start_test(callback, 500, 1875)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Рус {pedagog_kz}')
@@ -5426,7 +5439,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tОрыс тілі_kz')
 def rus_test(callback):
-    start_test(callback, 500, 1691)
+    start_test(callback, 500, 1876)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Сам {pedagog_kz}')
@@ -5439,7 +5452,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tӨзін-өзі тану_kz')
 def sam_test(callback):
-    start_test(callback, 500, 1689)
+    start_test(callback, 500, 1877)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Ист {pedagog_kz}')
@@ -5452,7 +5465,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tТарих_kz')
 def sam_test(callback):
-    start_test(callback, 500, 1686)
+    start_test(callback, 500, 1878)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Физ {pedagog_kz}')
@@ -5465,7 +5478,7 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tФизика_kz')
 def fiz_test(callback):
-    start_test(callback, 500, 1681)
+    start_test(callback, 500, 1879)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Хим {pedagog_kz}')
@@ -5478,20 +5491,20 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tХимия_kz')
 def fiz_test(callback):
-    start_test(callback, 500, 1682)
+    start_test(callback, 500, 1880)
 
 
-@bot.callback_query_handler(func=lambda callback: callback.data == f'Лог {pedagog_kz}')
+@bot.callback_query_handler(func=lambda callback: callback.data == f'Физра {pedagog_kz}')
 def t_log(callback: CallbackQuery):
-    ped_start_olymp.subj_info_kz(callback, bot, "Логопед")
+    ped_start_olymp.subj_info_kz(callback, bot, "Дене шынықтыру")
 
-@bot.callback_query_handler(func=lambda callback: callback.data == "pЛогопед_kz")
+@bot.callback_query_handler(func=lambda callback: callback.data == "pДене шынықтыру_kz")
 def t_kaz(callback: CallbackQuery):
-    ped_start_olymp.test_req_kz(callback, bot, "Логопед")
+    ped_start_olymp.test_req_kz(callback, bot, "Дене шынықтыру")
 
-@bot.callback_query_handler(func=lambda callback: callback.data == f'tЛогопед_kz')
+@bot.callback_query_handler(func=lambda callback: callback.data == f'tДене шынықтыру_kz')
 def log_test(callback):
-    start_test(callback, 500, 1692)
+    start_test(callback, 500, 1881)
 
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'Каз {pedagog_kz}')
@@ -5504,7 +5517,20 @@ def t_kaz(callback: CallbackQuery):
 
 @bot.callback_query_handler(func=lambda callback: callback.data == f'tҚаз. тілі және әдебиеті_kz')
 def kaz_test(callback):
-    start_test(callback, 500, 1685)
+    start_test(callback, 500, 1874)
+
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'Пед {pedagog_kz}')
+def t_kaz(callback: CallbackQuery):
+    ped_start_olymp.subj_info_kz(callback, bot, "Педагогика-Психология")
+
+@bot.callback_query_handler(func=lambda callback: callback.data == "pПедагогика-Психология_kz")
+def t_kaz(callback: CallbackQuery):
+    ped_start_olymp.test_req_kz(callback, bot, "Педагогика-Психология")
+
+@bot.callback_query_handler(func=lambda callback: callback.data == f'tПедагогика-Психология_kz')
+def kaz_test(callback):
+    start_test(callback, 500, 1882)
 ############################################    TEACHER    ##################################################
 ############################################    TEACHER    ##################################################
 ############################################    TEACHER    ##################################################
@@ -6225,6 +6251,26 @@ doda_time = [
 ]
 
 
+ustaz = [
+    2566,
+    2565,
+    2564,
+    2563,
+    2562,
+    2561,
+    2560,
+    2559,
+    2558,
+    2557,
+    2556,
+    2555,
+    2554,
+    2553,
+    2552,
+    2551
+]
+
+
 @bot.callback_query_handler(func=lambda callback: callback.data == 'delete_course')
 def delete_course(callback):
     global delete_flag
@@ -6274,6 +6320,8 @@ def start_test(callback, cost, course_id):
             flag = 3
         if quiz[0] in doda_time:
             timeout = 240
+        elif quiz[0] in ustaz:
+            timeout = 180
         else:
             timeout = quiz[2] // quiz[1]
         unique_id = sql.set_question_usages(context_id)
