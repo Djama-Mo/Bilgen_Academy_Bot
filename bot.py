@@ -157,15 +157,11 @@ def sign_in_ru(id):
 
 
 def iin(id):
-    bot.send_message(chat_id=id, text='ЖСН\n\nИИН')
+    bot.send_message(chat_id=id, text='ЖСН\n\nИИН\n\nМысалы/Например:\n000000000000')
 
 
 def fio(id):
-    bot.send_message(chat_id=id, text='Аты-жөніңіз\n\nВаше ФИО')
-
-
-def check_id(id):
-    bot.send_message(chat_id=id, text='send the id')
+    bot.send_message(chat_id=id, text='Аты-жөніңіз\n\nВаше ФИО\n\nМысалы/Например:\nСидоров Иван Алексеевич')
 
 
 def select_region(id, message_id):
@@ -6670,7 +6666,7 @@ def buttons_tree(message: Message):
                     _lang = 'ru'
                 menu(id_, txt='🎛 Басты бет\n🎛 На главную ⬇️', lang=_lang)
         else:
-            bot.send_message(chat_id=id_, text='Invalid')
+            bot.send_message(chat_id=id_, text=mistake)
     else:
         bot.send_message(chat_id=id_, text=mistake)
 
