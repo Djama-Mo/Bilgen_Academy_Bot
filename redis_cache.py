@@ -4,8 +4,6 @@ import redis
 
 # 'rediss://:pf41ce38d95403b8ab2177eb2ffa1cccd20bc15d62923012efaf2548c33e07879@ec2-54-204-192-122.compute-1' \
 #             '.amazonaws.com:20860'
-# if __name__ == '__main__':
-#     rediska.flushall()
 
 REDIS_URL = 'rediss://:pf41ce38d95403b8ab2177eb2ffa1cccd20bc15d62923012efaf2548c33e07879@ec2-18-211-69-88.compute-1.' \
             'amazonaws.com:12930'
@@ -13,6 +11,8 @@ url = urlparse(REDIS_URL)
 rediska = redis.Redis(host=url.hostname, port=url.port, username=url.username, password=url.password, ssl=True,
                       ssl_cert_reqs=None)
 
+if __name__ == '__main__':
+    rediska.flushall()
 
 def get_questions(chat_id):
     questions = rediska.get(chat_id)

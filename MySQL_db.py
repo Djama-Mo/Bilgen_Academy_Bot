@@ -16,7 +16,7 @@ class SQL_db:
 			self.connect = connect(
 								host='94.247.135.53',
 								user='telegramUser',
-								password='!QAZ2wsx'
+								password=''
 								)
 		except OperationalError as e:
 			logger.error("can't connect to Mysql")
